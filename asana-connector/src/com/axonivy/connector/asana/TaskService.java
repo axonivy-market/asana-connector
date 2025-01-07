@@ -4,9 +4,11 @@ import java.io.IOException;
 
 import com.asana.Client;
 
+import ch.ivyteam.ivy.environment.Ivy;
+
 public class TaskService {
-	private static Client client = Client
-			.accessToken("2/1209074611478328/1209074635879771:2119d88676db69f9c500e2f1a6846b69");
+
+	private static Client client = Client.accessToken(Ivy.var().get("asana.accessToken"));
 
 	public static TaskDetails getTask(String taskId) throws IOException {
 		return TaskDetails.from(client.tasks.getTask(taskId).option("pretty", true).execute());

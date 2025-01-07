@@ -57,7 +57,7 @@
         "dialog" : "com.axonivy.asana.connector.demo.TaskCreation:start()"
       },
       "visual" : {
-        "at" : { "x" : 272, "y" : 184 }
+        "at" : { "x" : 264, "y" : 184 }
       },
       "connect" : [
         { "id" : "f9", "to" : "f5", "color" : "default" }

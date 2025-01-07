@@ -1,0 +1,36 @@
+Dialogs:
+  com:
+    axonivy:
+      connector:
+        asana:
+          demo:
+            CloseBtnLabel: Close
+            FindTask:
+              FindTaskLabel: Enter task id
+              FindTaskTitle: Get Task Details
+              SearchBtnLabel: Search
+              TaskIdLabel: Task Id
+            TaskCreation:
+              AssigneeLabel: Assignee
+              CreateBtnLabel: Create
+              DefaultSelect: Select One
+              DueDateLabel: Due Date
+              FieldSetLabel: Task Info
+              TaskNameLabel: Task Name
+              Title: Task Creation
+              WorkspaceLabel: Workspace
+              label: Create a new task.
+            TaskDetails:
+              AssigneeLabel: Assignee
+              CompletedLabel: Is completed
+              CreatedDateLabel: Created Date
+              DefaultSelect: Select One
+              DeleteBtnLabel: Delete this task
+              DueDateLabel: 'Due Date '
+              ModifiedAtLabel: Modified At
+              StartDateLabel: Start Date
+              TaskDetailsTitle: Task Details
+              TaskInfoLabel: Task Info
+              TaskNameLabel: Task Name
+              UpdateBtnLabel: Update
+              WorkspaceLabel: Workspace

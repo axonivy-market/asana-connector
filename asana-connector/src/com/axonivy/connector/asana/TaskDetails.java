@@ -12,26 +12,17 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskDetails {
 
-	@Override
-	public String toString() {
-		return "TaskDetails [taskId=" + taskId + ", assigneeName=" + assigneeName + ", assigneeId=" + assigneeId
-				+ ", assigneeStatus=" + assigneeStatus + ", createdAt=" + createdAt + ", completed=" + completed
-				+ ", name=" + name + ", startOn=" + startOn + ", workspace=" + workspace + ", workspaceId="
-				+ workspaceId + ", dueDate=" + dueDate + "]";
-	}
-
 	public TaskDetails() {
 
 	}
 
-	public TaskDetails(String taskId, String assigneeName, String assigneeId, String assigneeStatus, String createdAt,
-			boolean completed, String name, LocalDate startOn, String workspace, String workspaceId,
-			LocalDate dueDate) {
+	public TaskDetails(String taskId, String assigneeName, String assigneeId, String createdAt, boolean completed,
+			String name, LocalDate startOn, String workspace, String workspaceId, LocalDate dueDate,
+			String modifiedAt) {
 		super();
 		this.taskId = taskId;
 		this.assigneeName = assigneeName;
 		this.assigneeId = assigneeId;
-		this.assigneeStatus = assigneeStatus;
 		this.createdAt = createdAt;
 		this.completed = completed;
 		this.name = name;
@@ -39,6 +30,15 @@ public class TaskDetails {
 		this.workspace = workspace;
 		this.workspaceId = workspaceId;
 		this.dueDate = dueDate;
+		this.modifiedAt = modifiedAt;
+	}
+
+	@Override
+	public String toString() {
+		return "TaskDetails [taskId=" + taskId + ", assigneeName=" + assigneeName + ", assigneeId=" + assigneeId
+				+ ", createdAt=" + createdAt + ", completed=" + completed + ", name=" + name + ", startOn=" + startOn
+				+ ", workspace=" + workspace + ", workspaceId=" + workspaceId + ", dueDate=" + dueDate + ", modifiedAt="
+				+ modifiedAt + "]";
 	}
 
 	public String getAssigneeName() {
@@ -63,14 +63,6 @@ public class TaskDetails {
 
 	public void setAssigneeName(String assigneeName) {
 		this.assigneeName = assigneeName;
-	}
-
-	public String getAssigneeStatus() {
-		return assigneeStatus;
-	}
-
-	public void setAssigneeStatus(String assigneeStatus) {
-		this.assigneeStatus = assigneeStatus;
 	}
 
 	public String getCreatedAt() {
@@ -129,13 +121,19 @@ public class TaskDetails {
 		this.dueDate = dueDate;
 	}
 
+	public String getModifiedAt() {
+		return modifiedAt;
+	}
+
+	public void setModifiedAt(String modifiedAt) {
+		this.modifiedAt = modifiedAt;
+	}
+
 	public String taskId;
 
 	public String assigneeName;
 
 	public String assigneeId;
-
-	public String assigneeStatus;
 
 	public String createdAt;
 
@@ -151,22 +149,26 @@ public class TaskDetails {
 
 	public LocalDate dueDate;
 
+	public String modifiedAt;
+
 	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-DD");
 
 	public static TaskDetails from(Task task) {
 		LocalDate startOn = task.startOn != null ? LocalDate.parse(task.startOn.toString()) : LocalDate.now();
 		LocalDate dueDate = task.dueOn != null ? LocalDate.parse(task.dueOn.toString()) : LocalDate.now();
 
-		return new TaskDetails(task.gid, task.assignee.name, task.assignee.gid, task.assigneeStatus,
+		return new TaskDetails(task.gid, task.assignee.name, task.assignee.gid,
 				ZonedDateTime.parse(task.createdAt.toString())
 						.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")),
-				task.completed, task.name, startOn, task.workspace.name, task.workspace.gid, dueDate);
+				task.completed, task.name, startOn, task.workspace.name, task.workspace.gid, dueDate, ZonedDateTime
+						.parse(task.modifiedAt.toString()).format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
 	}
+
 
 	public static ItemRequest<Task> to(Client client, TaskDetails task) {
 		Ivy.log().info(task);
 		return client.tasks.update(task.getTaskId()).data("name", task.name).data("assignee", task.assigneeId)
-				.data("completed", task.completed)
+				.data("completed", task.completed).data("start_on", formatter.format(task.startOn))
 				.data("due_on", formatter.format(task.dueDate)).option("pretty", true);
 	}
 
