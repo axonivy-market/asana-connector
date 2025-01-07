@@ -1,0 +1,261 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "1943FEA13F291B32",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.asana.TaskManagementData"
+  },
+  "elements" : [ {
+      "id" : "f3",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 536, "y" : 144 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "Script",
+      "name" : "Update Task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.asana.CreateTaskRequest;",
+            "import com.axonivy.connector.asana.TaskService;",
+            "import java.io.IOException;",
+            "try{",
+            "  TaskService.updateTask(in.taskDetails);",
+            "} catch(IOException ex) {",
+            "  out.error = ex.getMessage();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 144 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f3", "color" : "default" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "CallSubStart",
+      "name" : "update(TaskDetails)",
+      "config" : {
+        "signature" : "update",
+        "input" : {
+          "params" : [
+            { "name" : "taskDetails", "type" : "com.axonivy.connector.asana.TaskDetails", "desc" : "" }
+          ],
+          "map" : {
+            "out.taskDetails" : "param.taskDetails"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "taskId", "type" : "String", "desc" : "" },
+            { "name" : "error", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.taskId" : "in.taskId",
+            "result.error" : "in.error"
+          }
+        }
+      },
+      "tags" : [
+        "connector"
+      ],
+      "visual" : {
+        "at" : { "x" : 96, "y" : 144 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 536, "y" : 224 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "Script",
+      "name" : "Create Task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.asana.CreateTaskRequest;",
+            "import com.axonivy.connector.asana.TaskService;",
+            "import java.io.IOException;",
+            "try{",
+            "  out.taskId = TaskService.createTask(in.createRequest);",
+            "} catch(IOException ex) {",
+            "  out.error = ex.getMessage();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 224 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f8" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "CallSubStart",
+      "name" : "create(CreateTaskRequest)",
+      "config" : {
+        "signature" : "create",
+        "input" : {
+          "params" : [
+            { "name" : "request", "type" : "com.axonivy.connector.asana.CreateTaskRequest", "desc" : "" }
+          ],
+          "map" : {
+            "out.createRequest" : "param.request"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "request", "type" : "com.axonivy.connector.asana.CreateTaskRequest", "desc" : "" },
+            { "name" : "error", "type" : "String", "desc" : "" },
+            { "name" : "taskId", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.request" : "in.createRequest",
+            "result.error" : "in.error",
+            "result.taskId" : "in.taskId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 224 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f13",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 536, "y" : 400 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f14",
+      "type" : "Script",
+      "name" : "Delete Task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.asana.TaskService;",
+            "import java.io.IOException;",
+            "try{",
+            "  TaskService.deleteTask(in.taskId);",
+            "} catch(IOException ex) {",
+            "  out.error = ex.getMessage();",
+            "}"
+          ]
+        }
+      },
+      "tags" : [
+        "connector"
+      ],
+      "visual" : {
+        "at" : { "x" : 312, "y" : 400 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f13", "color" : "default" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "CallSubStart",
+      "name" : "delete(String)",
+      "config" : {
+        "signature" : "delete",
+        "input" : {
+          "params" : [
+            { "name" : "taskId", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.taskId" : "param.taskId"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "error", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.error" : "in.error"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 400 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f14" }
+      ]
+    }, {
+      "id" : "f18",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 536, "y" : 320 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f19",
+      "type" : "Script",
+      "name" : "Retrieve Task Details",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.asana.TaskService;",
+            "import java.io.IOException;",
+            "try{",
+            "  out.taskDetails = TaskService.getTask(in.taskId);",
+            "} catch(IOException ex) {",
+            "  out.error = ex.getMessage();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 320 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f18", "color" : "default" }
+      ]
+    }, {
+      "id" : "f20",
+      "type" : "CallSubStart",
+      "name" : "retrieve(String)",
+      "config" : {
+        "signature" : "retrieve",
+        "input" : {
+          "params" : [
+            { "name" : "taskId", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.taskId" : "param.taskId"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "error", "type" : "String", "desc" : "" },
+            { "name" : "taskDetails", "type" : "com.axonivy.connector.asana.TaskDetails", "desc" : "" }
+          ],
+          "map" : {
+            "result.error" : "in.error",
+            "result.taskDetails" : "in.taskDetails"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 320 }
+      },
+      "connect" : [
+        { "id" : "f22", "to" : "f19" }
+      ]
+    } ]
+}

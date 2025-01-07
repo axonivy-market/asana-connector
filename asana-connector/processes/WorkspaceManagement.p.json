@@ -1,0 +1,126 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "1943AF99B134940A",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.asana.WorkspaceManagementData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "getWorkspaces()",
+      "config" : {
+        "signature" : "getWorkspaces",
+        "result" : {
+          "params" : [
+            { "name" : "workspaces", "type" : "java.util.List<com.axonivy.connector.asana.Workspace>", "desc" : "" }
+          ],
+          "map" : {
+            "result.workspaces" : "in.workspaces"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 488, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "Script",
+      "name" : "Get Workspaces",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.Collections;",
+            "import com.axonivy.connector.asana.WorkspaceService;",
+            "import java.io.IOException;",
+            "",
+            "try{",
+            "  out.workspaces = WorkspaceService.getWorkspaces();",
+            "} catch(IOException ex) {",
+            "  out.workspaces = Collections.emptyList();",
+            "};"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f3", "to" : "f1", "color" : "default" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 488, "y" : 184 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Get Users From Workspace",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.Collections;",
+            "import com.axonivy.connector.asana.WorkspaceService;",
+            "import java.io.IOException;",
+            "",
+            "try{",
+            "  out.users = WorkspaceService.getUsersFromWorkspace(in.workspaceId);",
+            "} catch(IOException ex) {",
+            "  out.users = Collections.emptyList();",
+            "};"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 184 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "CallSubStart",
+      "name" : "getUsersFromWorkspace(String)",
+      "config" : {
+        "signature" : "getUsersFromWorkspace",
+        "input" : {
+          "params" : [
+            { "name" : "workspaceId", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.workspaceId" : "param.workspaceId"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "users", "type" : "java.util.List<com.axonivy.connector.asana.User>", "desc" : "" }
+          ],
+          "map" : {
+            "result.users" : "in.users"
+          }
+        }
+      },
+      "tags" : [
+        "connector"
+      ],
+      "visual" : {
+        "at" : { "x" : 96, "y" : 184 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f6" }
+      ]
+    } ]
+}
