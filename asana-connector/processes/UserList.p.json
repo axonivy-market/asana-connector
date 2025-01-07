@@ -1,0 +1,71 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "1943B0AF031822A2",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "asana.connector.UserListData"
+  },
+  "elements" : [ {
+      "id" : "f5",
+      "type" : "CallSubStart",
+      "name" : "getUsersFromWorkspace(String)",
+      "config" : {
+        "signature" : "getUsersFromWorkspace",
+        "input" : {
+          "params" : [
+            { "name" : "workspaceId", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.workspaceId" : "param.workspaceId"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "users", "type" : "java.util.List<com.axonivy.connector.asana.User>", "desc" : "" }
+          ],
+          "map" : {
+            "result.users" : "in.users"
+          }
+        }
+      },
+      "tags" : [
+        "connector"
+      ],
+      "visual" : {
+        "at" : { "x" : 264, "y" : 216 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "Script",
+      "name" : "Get Workspaces",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.Collections;",
+            "import com.axonivy.connector.asana.WorkspaceService;",
+            "if(in.workspaceId != \"\"){",
+            "  out.users = WorkspaceService.getUsersFromWorkspace(in.workspaceId);",
+            "} else {",
+            "  out.users = Collections.emptyList();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 400, "y" : 216 }
+      },
+      "connect" : [
+        { "id" : "f0", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 656, "y" : 216 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    } ]
+}

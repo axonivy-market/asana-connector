@@ -21,4 +21,11 @@
 			</plugin>
 		</plugins>
 	</build>
+	<dependencies>
+		<dependency>
+			<groupId>com.asana</groupId>
+			<artifactId>asana</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+	</dependencies>
 </project>

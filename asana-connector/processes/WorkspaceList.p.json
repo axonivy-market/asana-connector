@@ -1,0 +1,55 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "1943AF99B134940A",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "asana.connector.WorkspaceListData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "getWorkspaces()",
+      "config" : {
+        "signature" : "getWorkspaces",
+        "result" : {
+          "params" : [
+            { "name" : "workspaces", "type" : "java.util.List<com.axonivy.connector.asana.Workspace>", "desc" : "" }
+          ],
+          "map" : {
+            "result.workspaces" : "in.workspaces"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 360, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "Script",
+      "name" : "Get Workspaces",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.asana.WorkspaceService;",
+            "out.workspaces = WorkspaceService.getWorkspaces();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f3", "to" : "f1", "color" : "default" }
+      ]
+    } ]
+}

@@ -1,0 +1,74 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "1943ADC9472A5DA3",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.asana.connector.TaskRetrievalData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(TaskDetails)",
+      "config" : {
+        "signature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "taskDetails", "type" : "com.axonivy.connector.asana.TaskDetails", "desc" : "" }
+          ],
+          "map" : {
+            "out.taskDetails" : "param.taskDetails"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "taskId", "type" : "String", "desc" : "" },
+            { "name" : "error", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.taskId" : "in.taskId",
+            "result.error" : "in.error"
+          }
+        }
+      },
+      "tags" : [
+        "connector"
+      ],
+      "visual" : {
+        "at" : { "x" : 64, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 504, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Update Task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.asana.CreateTaskRequest;",
+            "import com.axonivy.connector.asana.TaskService;",
+            "import java.io.IOException;",
+            "try{",
+            "  TaskService.updateTask(in.taskDetails);",
+            "} catch(IOException ex) {",
+            "  out.error = ex.getMessage();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1", "color" : "default" }
+      ]
+    } ]
+}
