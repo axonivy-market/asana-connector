@@ -8,8 +8,6 @@ import com.asana.Client;
 import com.asana.models.Task;
 import com.asana.requests.ItemRequest;
 
-import ch.ivyteam.ivy.environment.Ivy;
-
 public class TaskDetails {
 
 	public TaskDetails() {
@@ -164,9 +162,7 @@ public class TaskDetails {
 						.parse(task.modifiedAt.toString()).format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
 	}
 
-
-	public static ItemRequest<Task> to(Client client, TaskDetails task) {
-		Ivy.log().info(task);
+	public static ItemRequest<Task> toUpdateItemRequest(Client client, TaskDetails task) {
 		return client.tasks.update(task.getTaskId()).data("name", task.name).data("assignee", task.assigneeId)
 				.data("completed", task.completed).data("start_on", formatter.format(task.startOn))
 				.data("due_on", formatter.format(task.dueDate)).option("pretty", true);

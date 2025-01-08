@@ -70,16 +70,10 @@ public class CreateTaskRequest {
 
 	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-DD");
 
-	public static ItemRequest<Task> to(Client client, CreateTaskRequest task) {
-		try {
-			return client.tasks.createTask().data("name", task.name).data("workspace", task.workspaceId)
-					.data("assignee", task.assigneeId).data("due_on", formatter.format(task.dueDate))
-					.option("pretty", true);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+	public static ItemRequest<Task> toCreateItemRequest(Client client, CreateTaskRequest task) throws IOException {
+		return client.tasks.createTask().data("name", task.name).data("workspace", task.workspaceId)
+				.data("assignee", task.assigneeId).data("due_on", formatter.format(task.dueDate))
+				.option("pretty", true);
 	}
 
 }

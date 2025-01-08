@@ -21,10 +21,10 @@
           "code" : [
             "import com.axonivy.connector.asana.CreateTaskRequest;",
             "import com.axonivy.connector.asana.TaskService;",
-            "import java.io.IOException;",
+            "",
             "try{",
             "  TaskService.updateTask(in.taskDetails);",
-            "} catch(IOException ex) {",
+            "} catch(Exception ex) {",
             "  out.error = ex.getMessage();",
             "}"
           ]
@@ -86,10 +86,10 @@
           "code" : [
             "import com.axonivy.connector.asana.CreateTaskRequest;",
             "import com.axonivy.connector.asana.TaskService;",
-            "import java.io.IOException;",
+            "",
             "try{",
             "  out.taskId = TaskService.createTask(in.createRequest);",
-            "} catch(IOException ex) {",
+            "} catch(Exception ex) {",
             "  out.error = ex.getMessage();",
             "}"
           ]
@@ -149,10 +149,10 @@
         "output" : {
           "code" : [
             "import com.axonivy.connector.asana.TaskService;",
-            "import java.io.IOException;",
+            "",
             "try{",
             "  TaskService.deleteTask(in.taskId);",
-            "} catch(IOException ex) {",
+            "} catch(Exception ex) {",
             "  out.error = ex.getMessage();",
             "}"
           ]
@@ -211,10 +211,10 @@
         "output" : {
           "code" : [
             "import com.axonivy.connector.asana.TaskService;",
-            "import java.io.IOException;",
+            "",
             "try{",
             "  out.taskDetails = TaskService.getTask(in.taskId);",
-            "} catch(IOException ex) {",
+            "} catch(Exception ex) {",
             "  out.error = ex.getMessage();",
             "}"
           ]
