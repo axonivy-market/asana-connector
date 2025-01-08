@@ -27,7 +27,7 @@
     }, {
       "id" : "f3",
       "type" : "DialogCall",
-      "name" : "Task Retrieval",
+      "name" : "Task Details",
       "config" : {
         "dialog" : "com.axonivy.connector.asana.demo.TaskRetrieval:start(com.axonivy.connector.asana.TaskDetails)",
         "call" : {
@@ -78,7 +78,7 @@
     }, {
       "id" : "f10",
       "type" : "DialogCall",
-      "name" : "Validate Task",
+      "name" : "Validate Task ID",
       "config" : {
         "dialog" : "com.axonivy.connector.asana.demo.FindTask:start()",
         "output" : {
