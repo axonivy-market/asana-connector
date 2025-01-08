@@ -11,11 +11,9 @@ import static org.mockito.Mockito.when;
 import java.time.LocalDate;
 import java.util.Date;
 
-import org.junit.After;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import com.asana.Client;
@@ -65,11 +63,6 @@ public class TaskServiceTest {
         task.modifiedAt = new DateTime(new Date());
     }
     
-    @After
-    public void clean() {
-    	Mockito.reset(mockClient, mockTasks, mockItemRequest, mockDeleteRequest);
-    }
-
     @Test
     public void testGetTask() throws Exception {
         when(mockTasks.getTask(TASK_ID)).thenReturn(mockItemRequest);
