@@ -1,7 +1,6 @@
 package com.axonivy.connector.asana.test.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.junit.jupiter.api.Assertions;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -63,8 +62,8 @@ public class WorkspaceServiceTest {
 
 		List<com.axonivy.connector.asana.Workspace> results = WorkspaceService.getWorkspaces();
 
-		assertNotNull(results);
-		assertEquals(results.size(), workspaces.size());
+		Assertions.assertNotNull(results);
+		Assertions.assertEquals(results.size(), workspaces.size());
 		verify(mockClient.workspaces, times(1)).getWorkspaces();
 	}
 
@@ -82,8 +81,8 @@ public class WorkspaceServiceTest {
 
 		List<com.axonivy.connector.asana.User> results = WorkspaceService.getUsersFromWorkspace(gid);
 
-		assertNotNull(results);
-		assertEquals(results.size(), users.size());
+		Assertions.assertNotNull(results);
+		Assertions.assertEquals(results.size(), users.size());
 		verify(mockClient.users, times(1)).getUsersForWorkspace(gid);
 	}
 

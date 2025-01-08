@@ -1,7 +1,6 @@
 package com.axonivy.connector.asana.test.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.junit.jupiter.api.Assertions;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
@@ -33,94 +32,93 @@ import ch.ivyteam.ivy.environment.IvyTest;
 @IvyTest
 public class TaskServiceTest {
 
+	@Mock
+	private Client mockClient;
 
-    @Mock
-    private Client mockClient;
+	@Mock
+	private ItemRequest<Task> mockItemRequest;
 
-    @Mock
-    private ItemRequest<Task> mockItemRequest;
-    
-    @Mock
-    private ItemRequest <JsonElement> mockDeleteRequest;
-    
-    @Mock
-    private Tasks mockTasks;
+	@Mock
+	private ItemRequest<JsonElement> mockDeleteRequest;
 
-    private static final String TASK_ID = "12345";
-    
-    private Task task;
+	@Mock
+	private Tasks mockTasks;
 
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-        mockClient.tasks = mockTasks;
-        TaskService.client = mockClient;
-        task = new Task();
-        task.gid = TASK_ID;
-        task.assignee = new User();
-        task.createdAt = new DateTime(new Date());
-        task.workspace = new Workspace();
-        task.modifiedAt = new DateTime(new Date());
-    }
-    
-    @Test
-    public void testGetTask() throws Exception {
-        when(mockTasks.getTask(TASK_ID)).thenReturn(mockItemRequest);
-        when(mockItemRequest.option("pretty", true)).thenReturn(mockItemRequest);
-        when(mockItemRequest.execute()).thenReturn(task);
+	private static final String TASK_ID = "12345";
 
-        TaskDetails taskDetails = TaskService.getTask(TASK_ID);
+	private Task task;
 
-        assertNotNull(taskDetails);
-        assertEquals(TASK_ID, taskDetails.taskId);
-        verify(mockClient.tasks, times(1)).getTask(TASK_ID);
-    }
-    
-    @Test
-    public void testCreateTask() throws Exception {
-        CreateTaskRequest request = new CreateTaskRequest();
-        request.setAssigneeId(TASK_ID);
-        request.setDueDate(LocalDate.now());
-        request.setName("task");
-        request.setWorkspaceId("1");
-        
-        when(mockTasks.createTask()).thenReturn(mockItemRequest);
-        when(mockItemRequest.data(anyString(), any())).thenReturn(mockItemRequest);
-        when(mockItemRequest.option("pretty", true)).thenReturn(mockItemRequest);
-        when(mockItemRequest.execute()).thenReturn(task);
+	@BeforeEach
+	public void setup() {
+		MockitoAnnotations.openMocks(this);
+		mockClient.tasks = mockTasks;
+		TaskService.client = mockClient;
+		task = new Task();
+		task.gid = TASK_ID;
+		task.assignee = new User();
+		task.createdAt = new DateTime(new Date());
+		task.workspace = new Workspace();
+		task.modifiedAt = new DateTime(new Date());
+	}
 
-        String result = TaskService.createTask(request);
+	@Test
+	public void testGetTask() throws Exception {
+		when(mockTasks.getTask(TASK_ID)).thenReturn(mockItemRequest);
+		when(mockItemRequest.option("pretty", true)).thenReturn(mockItemRequest);
+		when(mockItemRequest.execute()).thenReturn(task);
 
-        assertNotNull(result);
-        assertEquals(TASK_ID, result);
-        verify(mockClient.tasks, times(1)).createTask();
-    }
-    
-    @Test
-    public void testUpdateTask() throws Exception {
-        TaskDetails request = TaskDetails.from(task);
-        
-        when(mockTasks.update(TASK_ID)).thenReturn(mockItemRequest);
-        when(mockItemRequest.data(anyString(), any())).thenReturn(mockItemRequest);
-        when(mockItemRequest.option("pretty", true)).thenReturn(mockItemRequest);
-        when(mockItemRequest.execute()).thenReturn(task);
+		TaskDetails taskDetails = TaskService.getTask(TASK_ID);
 
-        String result = TaskService.updateTask(request);
+		Assertions.assertNotNull(taskDetails);
+		Assertions.assertEquals(TASK_ID, taskDetails.taskId);
+		verify(mockClient.tasks, times(1)).getTask(TASK_ID);
+	}
 
-        assertNotNull(result);
-        assertEquals(TASK_ID, result);
-        verify(mockClient.tasks, times(1)).update(TASK_ID);
-    }
-    
-    @Test
-    public void deleteTask() throws Exception {
-        when(mockTasks.deleteTask(TASK_ID)).thenReturn(mockDeleteRequest);
-        when(mockDeleteRequest.option("pretty", true)).thenReturn(mockDeleteRequest);
-        when(mockDeleteRequest.execute()).thenReturn(null);
-        
-        TaskService.deleteTask(TASK_ID);
-        
-        verify(mockClient.tasks, times(1)).deleteTask(TASK_ID);
-    }
+	@Test
+	public void testCreateTask() throws Exception {
+		CreateTaskRequest request = new CreateTaskRequest();
+		request.setAssigneeId(TASK_ID);
+		request.setDueDate(LocalDate.now());
+		request.setName("task");
+		request.setWorkspaceId("1");
+
+		when(mockTasks.createTask()).thenReturn(mockItemRequest);
+		when(mockItemRequest.data(anyString(), any())).thenReturn(mockItemRequest);
+		when(mockItemRequest.option("pretty", true)).thenReturn(mockItemRequest);
+		when(mockItemRequest.execute()).thenReturn(task);
+
+		String result = TaskService.createTask(request);
+
+		Assertions.assertNotNull(result);
+		Assertions.assertEquals(TASK_ID, result);
+		verify(mockClient.tasks, times(1)).createTask();
+	}
+
+	@Test
+	public void testUpdateTask() throws Exception {
+		TaskDetails request = TaskDetails.from(task);
+
+		when(mockTasks.update(TASK_ID)).thenReturn(mockItemRequest);
+		when(mockItemRequest.data(anyString(), any())).thenReturn(mockItemRequest);
+		when(mockItemRequest.option("pretty", true)).thenReturn(mockItemRequest);
+		when(mockItemRequest.execute()).thenReturn(task);
+
+		String result = TaskService.updateTask(request);
+
+		Assertions.assertNotNull(result);
+		Assertions.assertEquals(TASK_ID, result);
+		verify(mockClient.tasks, times(1)).update(TASK_ID);
+	}
+
+	@Test
+	public void deleteTask() throws Exception {
+		when(mockTasks.deleteTask(TASK_ID)).thenReturn(mockDeleteRequest);
+		when(mockDeleteRequest.option("pretty", true)).thenReturn(mockDeleteRequest);
+		when(mockDeleteRequest.execute()).thenReturn(null);
+
+		TaskService.deleteTask(TASK_ID);
+
+		verify(mockClient.tasks, times(1)).deleteTask(TASK_ID);
+	}
 
 }
