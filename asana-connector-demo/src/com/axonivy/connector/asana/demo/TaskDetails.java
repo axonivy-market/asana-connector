@@ -147,15 +147,16 @@ public class TaskDetails {
 
 	public String modifiedAt;
 
+	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
 	public static TaskDetails from(Task task) {
 		LocalDate startOn = task.startOn != null ? LocalDate.parse(task.startOn.toString()) : LocalDate.now();
 		LocalDate dueDate = task.dueOn != null ? LocalDate.parse(task.dueOn.toString()) : LocalDate.now();
 
 		return new TaskDetails(task.gid, task.assignee.name, task.assignee.gid,
-				ZonedDateTime.parse(task.createdAt.toString())
-						.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")),
-				task.completed, task.name, startOn, task.workspace.name, task.workspace.gid, dueDate, ZonedDateTime
-						.parse(task.modifiedAt.toString()).format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
+				ZonedDateTime.parse(task.createdAt.toString()).format(formatter), task.completed, task.name, startOn,
+				task.workspace.name, task.workspace.gid, dueDate,
+				ZonedDateTime.parse(task.modifiedAt.toString()).format(formatter));
 	}
 
 }

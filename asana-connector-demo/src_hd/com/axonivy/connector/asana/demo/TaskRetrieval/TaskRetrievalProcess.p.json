@@ -152,8 +152,7 @@
           ],
           "map" : {
             "out.taskDetails" : "param.taskDetails"
-          },
-          "code" : "ivy.log.info(\"{0}----\", param.taskDetails);"
+          }
         },
         "result" : {
           "params" : [

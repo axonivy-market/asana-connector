@@ -26,7 +26,6 @@ public class ConvertUtils {
 		data.put("completed", request.isCompleted());
 		data.put("start_on", formatter.format(request.getStartOn()));
 		data.put("due_on", formatter.format(request.getDueDate()));
-
 		return data;
 	}
 

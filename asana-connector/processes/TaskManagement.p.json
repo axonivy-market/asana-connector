@@ -22,7 +22,6 @@
             "import com.axonivy.connector.asana.TaskService;",
             "",
             "try{",
-            "  ivy.log.info(\"----{0}, {1}\", in.taskId, in.data);",
             "  out.task = TaskService.updateTask(in.taskId, in.data);",
             "} catch(Exception ex) {",
             "  out.error = ex.getMessage();",
