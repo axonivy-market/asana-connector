@@ -13,7 +13,7 @@
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "taskDetails", "type" : "com.axonivy.connector.asana.TaskDetails", "desc" : "" }
+            { "name" : "taskDetails", "type" : "com.axonivy.connector.asana.demo.TaskDetails", "desc" : "" }
           ],
           "map" : { },
           "code" : "out.taskDetails = param.taskDetails;"
@@ -65,10 +65,10 @@
           }
         },
         "output" : {
-          "map" : {
-            "out" : "in",
-            "out.users" : "result.users"
-          }
+          "code" : [
+            "import com.axonivy.connector.asana.demo.ConvertUtils;",
+            "out.users = ConvertUtils.convertToUsers(result.users);"
+          ]
         }
       },
       "visual" : {
@@ -117,11 +117,15 @@
       "type" : "SubProcessCall",
       "name" : "Update Task",
       "config" : {
-        "processCall" : "TaskManagement:update(com.axonivy.connector.asana.TaskDetails)",
+        "processCall" : "TaskManagement:update(String,java.util.Map)",
         "call" : {
           "map" : {
-            "param.taskDetails" : "in.taskDetails"
-          }
+            "param.taskId" : "in.taskDetails.taskId"
+          },
+          "code" : [
+            "import com.axonivy.connector.asana.demo.ConvertUtils;",
+            "param.data = ConvertUtils.toUpdateData(in.taskDetails);"
+          ]
         },
         "output" : {
           "map" : {
@@ -144,7 +148,7 @@
         "signature" : "update",
         "input" : {
           "params" : [
-            { "name" : "taskDetails", "type" : "com.axonivy.connector.asana.TaskDetails", "desc" : "" }
+            { "name" : "taskDetails", "type" : "com.axonivy.connector.asana.demo.TaskDetails", "desc" : "" }
           ],
           "map" : {
             "out.taskDetails" : "param.taskDetails"

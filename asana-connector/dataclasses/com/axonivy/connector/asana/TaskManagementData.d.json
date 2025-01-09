@@ -12,10 +12,10 @@
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "taskDetails",
-    "type" : "com.axonivy.connector.asana.TaskDetails"
+    "name" : "data",
+    "type" : "java.util.Map<String, Object>"
   }, {
-    "name" : "createRequest",
-    "type" : "com.axonivy.connector.asana.CreateTaskRequest"
+    "name" : "task",
+    "type" : "com.asana.models.Task"
   } ]
 }

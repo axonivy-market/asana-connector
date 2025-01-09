@@ -5,13 +5,13 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "workspaces",
-    "type" : "java.util.List<com.axonivy.connector.asana.Workspace>"
+    "type" : "java.util.List<com.asana.models.Workspace>"
   }, {
     "name" : "workspaceId",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "users",
-    "type" : "java.util.List<com.axonivy.connector.asana.User>"
+    "type" : "java.util.List<com.asana.models.User>"
   } ]
 }

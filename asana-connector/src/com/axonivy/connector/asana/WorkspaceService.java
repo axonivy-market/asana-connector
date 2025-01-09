@@ -2,24 +2,17 @@ package com.axonivy.connector.asana;
 
 import java.util.List;
 
-import com.asana.Client;
-
-import ch.ivyteam.ivy.environment.Ivy;
+import com.asana.models.User;
+import com.asana.models.Workspace;
 
 public class WorkspaceService {
 
-	public static Client client = Client.accessToken(Ivy.var().get("asana.accessToken"));
-
 	public static List<Workspace> getWorkspaces() throws Exception {
-		List<Workspace> result = client.workspaces.getWorkspaces().option("pretty", true).execute().stream()
-				.map(w -> new Workspace(w.name, w.gid)).toList();
-		return result;
+		return AsanaClient.client.workspaces.getWorkspaces().option("pretty", true).execute();
 	}
 
 	public static List<User> getUsersFromWorkspace(String workspaceId) throws Exception {
-		List<User> result = client.users.getUsersForWorkspace(workspaceId).option("pretty", true).execute().stream()
-				.map(w -> new User(w.name, w.gid)).toList();
-		return result;
+		return AsanaClient.client.users.getUsersForWorkspace(workspaceId).option("pretty", true).execute();
 	}
 
 }

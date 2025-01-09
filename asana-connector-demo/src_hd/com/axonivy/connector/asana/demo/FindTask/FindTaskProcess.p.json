@@ -13,7 +13,7 @@
         "signature" : "start",
         "result" : {
           "params" : [
-            { "name" : "taskDetails", "type" : "com.axonivy.connector.asana.TaskDetails", "desc" : "" }
+            { "name" : "taskDetails", "type" : "com.axonivy.connector.asana.demo.TaskDetails", "desc" : "" }
           ],
           "map" : {
             "result.taskDetails" : "in.taskDetails"
@@ -89,9 +89,14 @@
           "map" : {
             "out" : "in",
             "out.error" : "result.error",
-            "out.taskDetails" : "result.taskDetails",
             "out.taskId" : "in.taskId"
-          }
+          },
+          "code" : [
+            "import com.axonivy.connector.asana.demo.TaskDetails;",
+            "if(result.error == \"\"){",
+            "  out.taskDetails = TaskDetails.from(result.task);",
+            "} "
+          ]
         }
       },
       "visual" : {

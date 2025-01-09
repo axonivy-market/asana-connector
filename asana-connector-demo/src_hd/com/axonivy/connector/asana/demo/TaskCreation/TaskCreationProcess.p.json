@@ -14,7 +14,7 @@
         "input" : {
           "map" : { },
           "code" : [
-            "import com.axonivy.connector.asana.CreateTaskRequest;",
+            "import com.axonivy.connector.asana.demo.CreateTaskRequest;",
             "out.createRequest = new CreateTaskRequest();"
           ]
         },
@@ -58,18 +58,19 @@
       "type" : "SubProcessCall",
       "name" : "Create Task",
       "config" : {
-        "processCall" : "TaskManagement:create(com.axonivy.connector.asana.CreateTaskRequest)",
+        "processCall" : "TaskManagement:create(java.util.Map)",
         "call" : {
-          "map" : {
-            "param.request" : "in.createRequest"
-          },
-          "code" : "ivy.log.info(\"---sada {0}\", in);\r"
+          "map" : { },
+          "code" : [
+            "import com.axonivy.connector.asana.demo.ConvertUtils;",
+            "param.data = ConvertUtils.toCreateData(in.createRequest);"
+          ]
         },
         "output" : {
           "map" : {
             "out" : "in",
             "out.error" : "result.error",
-            "out.taskId" : "result.taskId"
+            "out.taskId" : "result.task.gid"
           }
         }
       },
@@ -87,7 +88,7 @@
         "signature" : "create",
         "input" : {
           "params" : [
-            { "name" : "request", "type" : "com.axonivy.connector.asana.CreateTaskRequest", "desc" : "" }
+            { "name" : "request", "type" : "com.axonivy.connector.asana.demo.CreateTaskRequest", "desc" : "" }
           ],
           "map" : {
             "out.createRequest" : "param.request"
@@ -149,10 +150,10 @@
       "config" : {
         "processCall" : "WorkspaceManagement:getWorkspaces()",
         "output" : {
-          "map" : {
-            "out" : "in",
-            "out.workspaces" : "result.workspaces"
-          }
+          "code" : [
+            "import com.axonivy.connector.asana.demo.ConvertUtils;",
+            "out.workspaces = ConvertUtils.convertToWorkspace(result.workspaces);"
+          ]
         }
       },
       "visual" : {
@@ -193,10 +194,10 @@
           }
         },
         "output" : {
-          "map" : {
-            "out" : "in",
-            "out.users" : "result.users"
-          }
+          "code" : [
+            "import com.axonivy.connector.asana.demo.ConvertUtils;",
+            "out.users = ConvertUtils.convertToUsers(result.users);"
+          ]
         }
       },
       "visual" : {

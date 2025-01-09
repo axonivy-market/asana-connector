@@ -1,6 +1,5 @@
 package com.axonivy.connector.asana.test.service;
 
-import org.junit.jupiter.api.Assertions;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -8,6 +7,7 @@ import static org.mockito.Mockito.when;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -19,6 +19,7 @@ import com.asana.models.Workspace;
 import com.asana.requests.CollectionRequest;
 import com.asana.resources.Users;
 import com.asana.resources.Workspaces;
+import com.axonivy.connector.asana.AsanaClient;
 import com.axonivy.connector.asana.WorkspaceService;
 
 import ch.ivyteam.ivy.environment.IvyTest;
@@ -44,9 +45,9 @@ public class WorkspaceServiceTest {
 	@BeforeEach
 	public void setup() {
 		MockitoAnnotations.openMocks(this);
+		AsanaClient.client = mockClient;
 		mockClient.workspaces = mockWorkspaces;
 		mockClient.users = mockUsers;
-		WorkspaceService.client = mockClient;
 	}
 
 	@Test
@@ -60,7 +61,7 @@ public class WorkspaceServiceTest {
 		when(mockWorkspaceRequest.option("pretty", true)).thenReturn(mockWorkspaceRequest);
 		when(mockWorkspaceRequest.execute()).thenReturn(workspaces);
 
-		List<com.axonivy.connector.asana.Workspace> results = WorkspaceService.getWorkspaces();
+		List<Workspace> results = WorkspaceService.getWorkspaces();
 
 		Assertions.assertNotNull(results);
 		Assertions.assertEquals(results.size(), workspaces.size());
@@ -79,7 +80,7 @@ public class WorkspaceServiceTest {
 		when(mockUserRequest.option("pretty", true)).thenReturn(mockUserRequest);
 		when(mockUserRequest.execute()).thenReturn(users);
 
-		List<com.axonivy.connector.asana.User> results = WorkspaceService.getUsersFromWorkspace(gid);
+		List<User> results = WorkspaceService.getUsersFromWorkspace(gid);
 
 		Assertions.assertNotNull(results);
 		Assertions.assertEquals(results.size(), users.size());

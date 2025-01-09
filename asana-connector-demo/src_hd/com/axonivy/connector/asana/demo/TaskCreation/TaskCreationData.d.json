@@ -5,7 +5,7 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "taskDetails",
-    "type" : "com.axonivy.connector.asana.TaskDetails"
+    "type" : "com.axonivy.connector.asana.demo.TaskDetails"
   }, {
     "name" : "error",
     "type" : "String",
@@ -16,12 +16,12 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "createRequest",
-    "type" : "com.axonivy.connector.asana.CreateTaskRequest"
+    "type" : "com.axonivy.connector.asana.demo.CreateTaskRequest"
   }, {
     "name" : "workspaces",
-    "type" : "java.util.List<com.axonivy.connector.asana.Workspace>"
+    "type" : "java.util.List<com.axonivy.connector.asana.demo.Workspace>"
   }, {
     "name" : "users",
-    "type" : "java.util.List<com.axonivy.connector.asana.User>"
+    "type" : "java.util.List<com.axonivy.connector.asana.demo.User>"
   } ]
 }

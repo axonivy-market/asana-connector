@@ -2,12 +2,10 @@ package com.axonivy.connector.asana.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
-
-import com.axonivy.connector.asana.CreateTaskRequest;
-import com.axonivy.connector.asana.TaskDetails;
 
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
 import ch.ivyteam.ivy.bpm.engine.client.ExecutionResult;
@@ -23,38 +21,32 @@ public class TaskManagementProcessTest {
 
 	@Test
 	void taskCreation(BpmClient bpmClient) throws NoSuchFieldException {
-		BpmElement startable = taskManagement.elementName("create(CreateTaskRequest)");
-		CreateTaskRequest requestData = new CreateTaskRequest();
-		requestData.setAssigneeId("1");
-		requestData.setName("Task");
-		requestData.setDueDate(LocalDate.now());
+		BpmElement startable = taskManagement.elementName("create(Map<String, Object>)");
+		Map<String, Object> data = new HashMap<>();
+		data.put("name", "1");
+		data.put("assignee", "12");
+		data.put("workspace", "12");
+		data.put("due_on", "2101-02-12");
 
-		ExecutionResult result = bpmClient.start().subProcess(startable).execute(requestData);
+		ExecutionResult result = bpmClient.start().subProcess(startable).execute(data);
 
 		History history = result.history();
-		assertThat(history.elementNames()).contains("create(CreateTaskRequest)");
+		assertThat(history.elementNames()).contains("create(Map<String, Object>)");
 	}
 
 	@Test
 	void taskUpdate(BpmClient bpmClient) throws NoSuchFieldException {
-		BpmElement startable = taskManagement.elementName("update(TaskDetails)");
-		TaskDetails requestData = new TaskDetails();
-		requestData.setAssigneeId("1");
-		requestData.setName("Task");
-		requestData.setAssigneeName("User");
-		requestData.setCompleted(true);
-		requestData.setCreatedAt(LocalDate.now().toString());
-		requestData.setDueDate(LocalDate.now());
-		requestData.setModifiedAt(LocalDate.now().toString());
-		requestData.setStartOn(LocalDate.now());
-		requestData.setTaskId("1");
-		requestData.setWorkspace("WorkSpace");
-		requestData.setWorkspaceId("1");
+		BpmElement startable = taskManagement.elementName("update(Map<String, Object>,String)");
+		Map<String, Object> data = new HashMap<>();
+		data.put("name", "1");
+		data.put("assignee", "12");
+		data.put("workspace", "12");
+		data.put("due_on", "2101-02-12");
 
-		ExecutionResult result = bpmClient.start().subProcess(startable).execute(requestData);
+		ExecutionResult result = bpmClient.start().subProcess(startable).execute("1", data);
 
 		History history = result.history();
-		assertThat(history.elementNames()).contains("update(TaskDetails)");
+		assertThat(history.elementNames()).contains("update(Map<String, Object>,String)");
 	}
 
 	@Test

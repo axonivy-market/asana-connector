@@ -13,7 +13,7 @@ import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
 
 @IvyProcessTest(enableWebServer = true)
 public class WorkspaceManagementProcessTest {
-	
+
 	private static final BpmProcess workspaceManagement = BpmProcess.name("WorkspaceManagement");
 
 	@Test

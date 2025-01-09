@@ -13,7 +13,7 @@
         "signature" : "getWorkspaces",
         "result" : {
           "params" : [
-            { "name" : "workspaces", "type" : "java.util.List<com.axonivy.connector.asana.Workspace>", "desc" : "" }
+            { "name" : "workspaces", "type" : "java.util.List<com.asana.models.Workspace>", "desc" : "" }
           ],
           "map" : {
             "result.workspaces" : "in.workspaces"
@@ -104,7 +104,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "users", "type" : "java.util.List<com.axonivy.connector.asana.User>", "desc" : "" }
+            { "name" : "users", "type" : "java.util.List<com.asana.models.User>", "desc" : "" }
           ],
           "map" : {
             "result.users" : "in.users"

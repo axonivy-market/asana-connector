@@ -1,12 +1,10 @@
-package com.axonivy.connector.asana;
+package com.axonivy.connector.asana.demo;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-import com.asana.Client;
 import com.asana.models.Task;
-import com.asana.requests.ItemRequest;
 
 public class TaskDetails {
 
@@ -149,8 +147,6 @@ public class TaskDetails {
 
 	public String modifiedAt;
 
-	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-DD");
-
 	public static TaskDetails from(Task task) {
 		LocalDate startOn = task.startOn != null ? LocalDate.parse(task.startOn.toString()) : LocalDate.now();
 		LocalDate dueDate = task.dueOn != null ? LocalDate.parse(task.dueOn.toString()) : LocalDate.now();
@@ -160,12 +156,6 @@ public class TaskDetails {
 						.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")),
 				task.completed, task.name, startOn, task.workspace.name, task.workspace.gid, dueDate, ZonedDateTime
 						.parse(task.modifiedAt.toString()).format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
-	}
-
-	public static ItemRequest<Task> toUpdateItemRequest(Client client, TaskDetails task) {
-		return client.tasks.update(task.getTaskId()).data("name", task.name).data("assignee", task.assigneeId)
-				.data("completed", task.completed).data("start_on", formatter.format(task.startOn))
-				.data("due_on", formatter.format(task.dueDate)).option("pretty", true);
 	}
 
 }

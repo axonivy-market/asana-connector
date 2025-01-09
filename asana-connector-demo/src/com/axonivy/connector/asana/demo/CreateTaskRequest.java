@@ -1,12 +1,6 @@
-package com.axonivy.connector.asana;
+package com.axonivy.connector.asana.demo;
 
-import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
-import com.asana.Client;
-import com.asana.models.Task;
-import com.asana.requests.ItemRequest;
 
 public class CreateTaskRequest {
 
@@ -67,13 +61,5 @@ public class CreateTaskRequest {
 	private String assigneeId;
 
 	private LocalDate dueDate;
-
-	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-DD");
-
-	public static ItemRequest<Task> toCreateItemRequest(Client client, CreateTaskRequest task) throws IOException {
-		return client.tasks.createTask().data("name", task.name).data("workspace", task.workspaceId)
-				.data("assignee", task.assigneeId).data("due_on", formatter.format(task.dueDate))
-				.option("pretty", true);
-	}
 
 }

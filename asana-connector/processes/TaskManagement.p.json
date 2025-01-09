@@ -19,11 +19,11 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.connector.asana.CreateTaskRequest;",
             "import com.axonivy.connector.asana.TaskService;",
             "",
             "try{",
-            "  TaskService.updateTask(in.taskDetails);",
+            "  ivy.log.info(\"----{0}, {1}\", in.taskId, in.data);",
+            "  out.task = TaskService.updateTask(in.taskId, in.data);",
             "} catch(Exception ex) {",
             "  out.error = ex.getMessage();",
             "}"
@@ -39,25 +39,29 @@
     }, {
       "id" : "f5",
       "type" : "CallSubStart",
-      "name" : "update(TaskDetails)",
+      "name" : "update(Map<String, Object>,String)",
       "config" : {
         "signature" : "update",
         "input" : {
           "params" : [
-            { "name" : "taskDetails", "type" : "com.axonivy.connector.asana.TaskDetails", "desc" : "" }
+            { "name" : "taskId", "type" : "String", "desc" : "" },
+            { "name" : "data", "type" : "java.util.Map", "desc" : "" }
           ],
           "map" : {
-            "out.taskDetails" : "param.taskDetails"
+            "out.data" : "param.data",
+            "out.taskId" : "param.taskId"
           }
         },
         "result" : {
           "params" : [
             { "name" : "taskId", "type" : "String", "desc" : "" },
-            { "name" : "error", "type" : "String", "desc" : "" }
+            { "name" : "error", "type" : "String", "desc" : "" },
+            { "name" : "task", "type" : "com.asana.models.Task", "desc" : "" }
           ],
           "map" : {
             "result.taskId" : "in.taskId",
-            "result.error" : "in.error"
+            "result.error" : "in.error",
+            "result.task" : "in.task"
           }
         }
       },
@@ -84,11 +88,10 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.connector.asana.CreateTaskRequest;",
             "import com.axonivy.connector.asana.TaskService;",
             "",
             "try{",
-            "  out.taskId = TaskService.createTask(in.createRequest);",
+            "  out.task = TaskService.createTask(in.data);",
             "} catch(Exception ex) {",
             "  out.error = ex.getMessage();",
             "}"
@@ -104,25 +107,25 @@
     }, {
       "id" : "f10",
       "type" : "CallSubStart",
-      "name" : "create(CreateTaskRequest)",
+      "name" : "create(Map<String, Object>)",
       "config" : {
         "signature" : "create",
         "input" : {
           "params" : [
-            { "name" : "request", "type" : "com.axonivy.connector.asana.CreateTaskRequest", "desc" : "" }
+            { "name" : "data", "type" : "java.util.Map", "desc" : "" }
           ],
           "map" : {
-            "out.createRequest" : "param.request"
+            "out.data" : "param.data"
           }
         },
         "result" : {
           "params" : [
-            { "name" : "request", "type" : "com.axonivy.connector.asana.CreateTaskRequest", "desc" : "" },
+            { "name" : "task", "type" : "com.asana.models.Task", "desc" : "" },
             { "name" : "error", "type" : "String", "desc" : "" },
             { "name" : "taskId", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "result.request" : "in.createRequest",
+            "result.task" : "in.task",
             "result.error" : "in.error",
             "result.taskId" : "in.taskId"
           }
@@ -213,7 +216,7 @@
             "import com.axonivy.connector.asana.TaskService;",
             "",
             "try{",
-            "  out.taskDetails = TaskService.getTask(in.taskId);",
+            "  out.task = TaskService.getTask(in.taskId);",
             "} catch(Exception ex) {",
             "  out.error = ex.getMessage();",
             "}"
@@ -243,11 +246,11 @@
         "result" : {
           "params" : [
             { "name" : "error", "type" : "String", "desc" : "" },
-            { "name" : "taskDetails", "type" : "com.axonivy.connector.asana.TaskDetails", "desc" : "" }
+            { "name" : "task", "type" : "com.asana.models.Task", "desc" : "" }
           ],
           "map" : {
             "result.error" : "in.error",
-            "result.taskDetails" : "in.taskDetails"
+            "result.task" : "in.task"
           }
         }
       },

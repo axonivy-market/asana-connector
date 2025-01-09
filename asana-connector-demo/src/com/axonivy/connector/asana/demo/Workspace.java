@@ -1,17 +1,17 @@
-package com.axonivy.connector.asana;
+package com.axonivy.connector.asana.demo;
 
-public class User {
+public class Workspace {
 	
 	@Override
 	public String toString() {
 		return "Workspace [name=" + name + ", id=" + id + "]";
 	}
 
-	public User() {
+	public Workspace() {
 		super();
 	}
 
-	public User(String name, String id) {
+	public Workspace(String name, String id) {
 		super();
 		this.name = name;
 		this.id = id;
@@ -36,5 +36,6 @@ public class User {
 	private String name;
 	
 	private String id;
+	
 
 }

@@ -5,10 +5,10 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "taskDetails",
-    "type" : "com.axonivy.connector.asana.TaskDetails"
+    "type" : "com.axonivy.connector.asana.demo.TaskDetails"
   }, {
     "name" : "users",
-    "type" : "java.util.List<com.axonivy.connector.asana.User>"
+    "type" : "java.util.List<com.axonivy.connector.asana.demo.User>"
   }, {
     "name" : "error",
     "type" : "String",
