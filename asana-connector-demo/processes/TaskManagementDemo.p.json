@@ -11,6 +11,9 @@
       "config" : {
         "signature" : "getTaskDetails"
       },
+      "tags" : [
+        "demo"
+      ],
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
@@ -69,6 +72,9 @@
       "config" : {
         "signature" : "createTask"
       },
+      "tags" : [
+        "demo"
+      ],
       "visual" : {
         "at" : { "x" : 96, "y" : 184 }
       },
