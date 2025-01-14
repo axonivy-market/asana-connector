@@ -30,7 +30,7 @@
 						<p:outputLabel for="dueDate"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/DueDateLabel')}" />
 						<p:datePicker id="dueDate" required="true"
-							value="#{data.createRequest.dueDate}" />
+							value="#{data.createRequest.dueDate}" showIcon="true" />
 
 						<p:outputLabel for="workspaceId"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/WorkspaceLabel')}" />
@@ -48,8 +48,8 @@
 								listener="#{logic.getProjects}" />
 						</p:selectOneMenu>
 
-<p:outputLabel value="" />
-<p:outputLabel value="" />
+						<p:outputLabel value="" />
+						<p:outputLabel value="" />
 
 						<p:outputLabel for="projectId"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/ProjectLabel')}" />

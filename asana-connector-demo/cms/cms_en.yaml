@@ -6,11 +6,6 @@ Dialogs:
           demo:
             CloseBtnLabel: Close
             DefaultSelectValue: Select One
-            FindTask:
-              FindTaskLabel: Enter task id
-              FindTaskTitle: Get Task Details
-              SearchBtnLabel: Search
-              TaskIdLabel: Task Id
             TaskCreation:
               AssigneeLabel: Assignee
               CreateBtnLabel: Create
@@ -30,7 +25,7 @@ Dialogs:
               DueDateLabel: 'Due Date '
               ModifiedAtLabel: Modified At
               StartDateLabel: Start Date
-              TaskDetailsTitle: Task Details
+              TaskDetailsTitle: Update Task
               TaskInfoLabel: Task Info
               TaskNameLabel: Task Name
               UpdateBtnLabel: Update
@@ -43,3 +38,4 @@ Dialogs:
               TableId: ID
               TableName: Name
               TableStartDate: Start Date
+              Title: Task List View
