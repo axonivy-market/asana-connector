@@ -23,7 +23,7 @@ Dialogs:
               label: Create a new task.
             TaskDetails:
               AssigneeLabel: Assignee
-              CompletedLabel: Is completed
+              CompletedLabel: Completed
               CreatedDateLabel: Created Date
               DefaultSelect: Select One
               DeleteBtnLabel: Delete

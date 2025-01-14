@@ -16,13 +16,16 @@
 				<p:growl id="growl" showDetail="false" />
 				<p:fieldset
 					legend="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/FieldSetLabel')}">
-					<p:panelGrid columns="4"
-						styleClass="ui-panelgrid-blank ui-fluid"
+					<p:panelGrid columns="6" styleClass="ui-panelgrid-blank ui-fluid"
+						columnClasses="ui-g-2 pl-0, ui-g-3 pl-0, ui-g-1 pl-0, ui-g-1 pl-0, ui-g-2 pl-0, ui-g-3 pr-0 mr-0"
 						layout="grid">
 						<p:outputLabel for="name"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/TaskNameLabel')}" />
-						<p:inputText id="name" required="true" styleClass="align-items-start"
-							value="#{data.createRequest.name}" />
+						<p:inputText id="name" required="true"
+							styleClass="align-items-start" value="#{data.createRequest.name}" />
+
+						<p:outputLabel value="" />
+						<p:outputLabel value="" />
 
 						<p:outputLabel for="dueDate"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/DueDateLabel')}" />
@@ -45,8 +48,11 @@
 								listener="#{logic.getProjects}" />
 						</p:selectOneMenu>
 
+<p:outputLabel value="" />
+<p:outputLabel value="" />
 
-						<p:outputLabel for="projectId" value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/ProjectLabel')}" />
+						<p:outputLabel for="projectId"
+							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/ProjectLabel')}" />
 						<p:selectOneMenu id="projectId" required="true"
 							value="#{data.createRequest.projectId}">
 							<f:selectItem
