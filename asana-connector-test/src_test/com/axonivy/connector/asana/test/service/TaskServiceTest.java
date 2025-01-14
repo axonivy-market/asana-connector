@@ -5,8 +5,10 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
@@ -19,9 +21,11 @@ import com.asana.Client;
 import com.asana.models.Task;
 import com.asana.models.User;
 import com.asana.models.Workspace;
+import com.asana.requests.CollectionRequest;
 import com.asana.requests.ItemRequest;
 import com.asana.resources.Tasks;
 import com.axonivy.connector.asana.AsanaClient;
+import com.axonivy.connector.asana.GetTasksRequest;
 import com.axonivy.connector.asana.TaskService;
 import com.google.api.client.util.DateTime;
 import com.google.gson.JsonElement;
@@ -38,12 +42,17 @@ public class TaskServiceTest {
 	private ItemRequest<Task> mockItemRequest;
 
 	@Mock
+	private CollectionRequest<Task> mockItemCollection;
+
+	@Mock
 	private ItemRequest<JsonElement> mockDeleteRequest;
 
 	@Mock
 	private Tasks mockTasks;
 
 	private static final String TASK_ID = "12345";
+
+	private static final String PROJECT_ID = "12345";
 
 	private Task task;
 
@@ -71,6 +80,23 @@ public class TaskServiceTest {
 		Assertions.assertNotNull(taskDetails);
 		Assertions.assertEquals(TASK_ID, taskDetails.gid);
 		verify(mockClient.tasks, times(1)).getTask(TASK_ID);
+	}
+
+	@Test
+	public void testGetTaskList() throws Exception {
+		GetTasksRequest request = GetTasksRequest.fromProjectId(PROJECT_ID);
+		
+		when(mockTasks.getTasksForProject(request.getProjectGid(), request.getCompletedSince(), request.getOffset(),
+				request.getLimit(), request.getOptFields(), request.getOptPretty())).thenReturn(mockItemCollection);
+		when(mockItemCollection.option("pretty", true)).thenReturn(mockItemCollection);
+		when(mockItemCollection.execute()).thenReturn(Collections.singletonList(task));
+
+		List<Task> taskList = TaskService.getTaskList(request);
+
+		Assertions.assertNotNull(taskList);
+		Assertions.assertEquals(TASK_ID, taskList.get(0).gid);
+		verify(mockClient.tasks, times(1)).getTasksForProject(request.getProjectGid(), request.getCompletedSince(),
+				request.getOffset(), request.getLimit(), request.getOptFields(), request.getOptPretty());
 	}
 
 	@Test

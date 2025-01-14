@@ -66,8 +66,8 @@
         },
         "output" : {
           "code" : [
-            "import com.axonivy.connector.asana.demo.ConvertUtils;",
-            "out.users = ConvertUtils.convertToUsers(result.users);"
+            "import com.axonivy.connector.asana.demo.Resource;",
+            "out.users = Resource.fromUsers(result.users);"
           ]
         }
       },

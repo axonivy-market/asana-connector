@@ -3,6 +3,7 @@ package com.axonivy.connector.asana.demo;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import com.asana.models.Task;
 
@@ -152,11 +153,17 @@ public class TaskDetails {
 	public static TaskDetails from(Task task) {
 		LocalDate startOn = task.startOn != null ? LocalDate.parse(task.startOn.toString()) : LocalDate.now();
 		LocalDate dueDate = task.dueOn != null ? LocalDate.parse(task.dueOn.toString()) : LocalDate.now();
+		String assignee = task.assignee != null ? task.assignee.name : "";
+		String assigneeId = task.assignee != null ? task.assignee.gid : "";
 
-		return new TaskDetails(task.gid, task.assignee.name, task.assignee.gid,
+		return new TaskDetails(task.gid, assignee, assigneeId,
 				ZonedDateTime.parse(task.createdAt.toString()).format(formatter), task.completed, task.name, startOn,
 				task.workspace.name, task.workspace.gid, dueDate,
 				ZonedDateTime.parse(task.modifiedAt.toString()).format(formatter));
+	}
+	
+	public static List<TaskDetails> removeTask(List<TaskDetails> tasks, String taskId) {
+		return tasks.stream().filter(t -> t.getTaskId() != taskId).toList();
 	}
 
 }

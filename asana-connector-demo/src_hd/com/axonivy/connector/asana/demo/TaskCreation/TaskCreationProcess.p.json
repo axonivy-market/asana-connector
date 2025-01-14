@@ -151,8 +151,8 @@
         "processCall" : "WorkspaceManagement:getWorkspaces()",
         "output" : {
           "code" : [
-            "import com.axonivy.connector.asana.demo.ConvertUtils;",
-            "out.workspaces = ConvertUtils.convertToWorkspace(result.workspaces);"
+            "import com.axonivy.connector.asana.demo.Resource;",
+            "out.workspaces = Resource.fromWorkspaces(result.workspaces);"
           ]
         }
       },
@@ -195,8 +195,8 @@
         },
         "output" : {
           "code" : [
-            "import com.axonivy.connector.asana.demo.ConvertUtils;",
-            "out.users = ConvertUtils.convertToUsers(result.users);"
+            "import com.axonivy.connector.asana.demo.Resource;",
+            "out.users = Resource.fromUsers(result.users);"
           ]
         }
       },
@@ -213,5 +213,50 @@
         "at" : { "x" : 568, "y" : 352 },
         "labelOffset" : { "x" : 10, "y" : 30 }
       }
+    }, {
+      "id" : "f20",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 568, "y" : 448 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f21",
+      "type" : "SubProcessCall",
+      "name" : "Load Projects",
+      "config" : {
+        "processCall" : "WorkspaceManagement:getProjectsFromWorkspace(String)",
+        "call" : {
+          "map" : {
+            "param.workspaceId" : "in.createRequest.workspaceId"
+          }
+        },
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.asana.demo.Resource;",
+            "out.projects = Resource.fromProjects(result.projects);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 448 }
+      },
+      "connect" : [
+        { "id" : "f24", "to" : "f20" }
+      ]
+    }, {
+      "id" : "f22",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getProjects()",
+      "config" : {
+        "signature" : "getProjects",
+        "guid" : "1944F3485BF70CDE"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 448 }
+      },
+      "connect" : [
+        { "id" : "f23", "to" : "f21" }
+      ]
     } ]
 }

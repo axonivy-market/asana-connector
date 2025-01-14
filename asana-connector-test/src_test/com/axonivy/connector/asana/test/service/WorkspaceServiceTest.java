@@ -14,9 +14,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import com.asana.Client;
+import com.asana.models.Project;
 import com.asana.models.User;
 import com.asana.models.Workspace;
 import com.asana.requests.CollectionRequest;
+import com.asana.resources.Projects;
 import com.asana.resources.Users;
 import com.asana.resources.Workspaces;
 import com.axonivy.connector.asana.AsanaClient;
@@ -35,12 +37,20 @@ public class WorkspaceServiceTest {
 
 	@Mock
 	private CollectionRequest<User> mockUserRequest;
+	
+	@Mock
+	private CollectionRequest<Project> mockProjectRequest;
 
 	@Mock
 	private Workspaces mockWorkspaces;
 
 	@Mock
 	private Users mockUsers;
+	
+	@Mock
+	private Projects mockProjects;
+	
+	private static final String GID = "12345";
 
 	@BeforeEach
 	public void setup() {
@@ -48,12 +58,13 @@ public class WorkspaceServiceTest {
 		AsanaClient.client = mockClient;
 		mockClient.workspaces = mockWorkspaces;
 		mockClient.users = mockUsers;
+		mockClient.projects = mockProjects;
 	}
 
 	@Test
 	public void testGetWorkspaces() throws Exception {
 		Workspace workspace = new Workspace();
-		workspace.gid = "123";
+		workspace.gid = GID;
 		workspace.name = "workspace";
 		List<Workspace> workspaces = Collections.singletonList(workspace);
 
@@ -70,21 +81,38 @@ public class WorkspaceServiceTest {
 
 	@Test
 	public void testGetUsersFromWorkspace() throws Exception {
-		String gid = "123";
 		User user = new User();
-		user.gid = "123";
+		user.gid = GID;
 		user.name = "workspace";
 		List<User> users = Collections.singletonList(user);
 
-		when(mockUsers.getUsersForWorkspace(gid)).thenReturn(mockUserRequest);
+		when(mockUsers.getUsersForWorkspace(GID)).thenReturn(mockUserRequest);
 		when(mockUserRequest.option("pretty", true)).thenReturn(mockUserRequest);
 		when(mockUserRequest.execute()).thenReturn(users);
 
-		List<User> results = WorkspaceService.getUsersFromWorkspace(gid);
+		List<User> results = WorkspaceService.getUsersFromWorkspace(GID);
 
 		Assertions.assertNotNull(results);
 		Assertions.assertEquals(results.size(), users.size());
-		verify(mockClient.users, times(1)).getUsersForWorkspace(gid);
+		verify(mockClient.users, times(1)).getUsersForWorkspace(GID);
+	}
+	
+	@Test
+	public void testGetProjectsFromWorkspace() throws Exception {
+		Project project = new Project();
+		project.gid = GID;
+		project.name = "workspace";
+		List<Project> projects = Collections.singletonList(project);
+
+		when(mockProjects.getProjects(null, null, GID)).thenReturn(mockProjectRequest);
+		when(mockProjectRequest.option("pretty", true)).thenReturn(mockProjectRequest);
+		when(mockProjectRequest.execute()).thenReturn(projects);
+
+		List<Project> results = WorkspaceService.getProjectsFromWorkspace(GID);
+
+		Assertions.assertNotNull(results);
+		Assertions.assertEquals(results.size(), projects.size());
+		verify(mockClient.projects, times(1)).getProjects(null, null, GID);
 	}
 
 }

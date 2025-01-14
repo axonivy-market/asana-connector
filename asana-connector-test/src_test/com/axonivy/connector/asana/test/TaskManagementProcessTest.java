@@ -7,6 +7,8 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
+import com.axonivy.connector.asana.GetTasksRequest;
+
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
 import ch.ivyteam.ivy.bpm.engine.client.ExecutionResult;
 import ch.ivyteam.ivy.bpm.engine.client.History;
@@ -47,6 +49,17 @@ public class TaskManagementProcessTest {
 
 		History history = result.history();
 		assertThat(history.elementNames()).contains("update(Map<String, Object>,String)");
+	}
+	
+	@Test
+	void tasksList(BpmClient bpmClient) throws NoSuchFieldException {
+		BpmElement startable = taskManagement.elementName("getTaskList(GetTasksRequest)");
+		GetTasksRequest request = GetTasksRequest.fromProjectId("123");
+
+		ExecutionResult result = bpmClient.start().subProcess(startable).execute(request);
+
+		History history = result.history();
+		assertThat(history.elementNames()).contains("getTaskList(GetTasksRequest)");
 	}
 
 	@Test

@@ -8,7 +8,7 @@
     "type" : "com.axonivy.connector.asana.demo.TaskDetails"
   }, {
     "name" : "users",
-    "type" : "java.util.List<com.axonivy.connector.asana.demo.User>"
+    "type" : "java.util.List<com.axonivy.connector.asana.demo.Resource>"
   }, {
     "name" : "error",
     "type" : "String",

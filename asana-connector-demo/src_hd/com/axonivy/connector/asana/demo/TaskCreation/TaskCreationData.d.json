@@ -19,9 +19,12 @@
     "type" : "com.axonivy.connector.asana.demo.CreateTaskRequest"
   }, {
     "name" : "workspaces",
-    "type" : "java.util.List<com.axonivy.connector.asana.demo.Workspace>"
+    "type" : "java.util.List<com.axonivy.connector.asana.demo.Resource>"
   }, {
     "name" : "users",
-    "type" : "java.util.List<com.axonivy.connector.asana.demo.User>"
+    "type" : "java.util.List<com.axonivy.connector.asana.demo.Resource>"
+  }, {
+    "name" : "projects",
+    "type" : "java.util.List<com.axonivy.connector.asana.demo.Resource>"
   } ]
 }

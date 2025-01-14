@@ -15,7 +15,7 @@
 				<p:growl id="growl" showDetail="false" />
 				<p:fieldset
 					legend="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/TaskInfoLabel')}">
-					<p:panelGrid columns="4"
+					<p:panelGrid columns="5"
 						styleClass="ui-panelgrid-blank ui-fluid width-100"
 						columnClasses="width-23-percent, width-23-percent, width-8-percent, width-23-percent, width-23-percent"
 						layout="tabular">
@@ -36,6 +36,8 @@
 							</f:selectItems>
 						</p:selectOneMenu>
 
+						<p:outputLabel value="" />
+
 						<p:outputLabel for="modifiedAt"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/ModifiedAtLabel')}" />
 						<p:inputText id="modifiedAt" disabled="true"
@@ -43,12 +45,14 @@
 
 						<p:outputLabel for="createdAt"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/CreatedDateLabel')}" />
-						<p:inputText id="createdAt" required="true" disabled="true"
+						<p:inputText id="createdAt" disabled="true"
 							value="#{data.taskDetails.createdAt}" />
+
+						<p:outputLabel value="" />
 
 						<p:outputLabel for="completed"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/CompletedLabel')}" />
-						<p:selectBooleanCheckbox id="completed" required="true"
+						<p:selectBooleanCheckbox id="completed"
 							value="#{data.taskDetails.completed}" />
 
 						<p:outputLabel for="startOn"
@@ -56,9 +60,11 @@
 						<p:datePicker id="startOn" required="true"
 							value="#{data.taskDetails.startOn}" />
 
+						<p:outputLabel value="" />
+
 						<p:outputLabel for="workspace"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/WorkspaceLabel')}" />
-						<p:inputText id="workspace" required="true" disabled="true"
+						<p:inputText id="workspace" disabled="true"
 							value="#{data.taskDetails.workspace}" />
 
 						<p:outputLabel for="dueDate"
@@ -72,9 +78,6 @@
 					<p:commandLink id="close" actionListener="#{logic.close}"
 						value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/CloseBtnLabel')}"
 						immediate="true" />
-					<p:commandButton id="delete" actionListener="#{logic.delete}"
-						value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/DeleteBtnLabel')}"
-						update="form" icon="pi pi-check" />
 					<p:commandButton id="update"
 						actionListener="#{logic.update(data.taskDetails)}"
 						value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/UpdateBtnLabel')}"

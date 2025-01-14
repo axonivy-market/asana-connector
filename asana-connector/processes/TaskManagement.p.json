@@ -268,5 +268,69 @@
       "connect" : [
         { "id" : "f22", "to" : "f19" }
       ]
+    }, {
+      "id" : "f0",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 536, "y" : 496 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f1",
+      "type" : "Script",
+      "name" : "Get Task List",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.asana.TaskService;",
+            "",
+            "try{",
+            "  out.tasks = TaskService.getTaskList(in.getTaskRequest);",
+            "} catch(Exception ex) {",
+            "  out.error = ex.getMessage();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 496 }
+      },
+      "connect" : [
+        { "id" : "f23", "to" : "f0", "color" : "default" }
+      ]
+    }, {
+      "id" : "f2",
+      "type" : "CallSubStart",
+      "name" : "getTaskList(GetTasksRequest)",
+      "config" : {
+        "signature" : "getTaskList",
+        "input" : {
+          "params" : [
+            { "name" : "request", "type" : "com.axonivy.connector.asana.GetTasksRequest", "desc" : "" }
+          ],
+          "map" : {
+            "out.getTaskRequest" : "param.request"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "error", "type" : "String", "desc" : "" },
+            { "name" : "tasks", "type" : "java.util.List<com.asana.models.Task>", "desc" : "" }
+          ],
+          "map" : {
+            "result.error" : "in.error",
+            "result.tasks" : "in.tasks"
+          }
+        }
+      },
+      "tags" : [
+        "connector"
+      ],
+      "visual" : {
+        "at" : { "x" : 96, "y" : 496 }
+      },
+      "connect" : [
+        { "id" : "f24", "to" : "f1" }
+      ]
     } ]
 }

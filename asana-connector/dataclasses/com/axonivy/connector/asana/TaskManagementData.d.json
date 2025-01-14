@@ -17,5 +17,11 @@
   }, {
     "name" : "task",
     "type" : "com.asana.models.Task"
+  }, {
+    "name" : "tasks",
+    "type" : "java.util.List<com.asana.models.Task>"
+  }, {
+    "name" : "getTaskRequest",
+    "type" : "com.axonivy.connector.asana.GetTasksRequest"
   } ]
 }

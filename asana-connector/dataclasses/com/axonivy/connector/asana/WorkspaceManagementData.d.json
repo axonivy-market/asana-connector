@@ -13,5 +13,8 @@
   }, {
     "name" : "users",
     "type" : "java.util.List<com.asana.models.User>"
+  }, {
+    "name" : "projects",
+    "type" : "java.util.List<com.asana.models.Project>"
   } ]
 }

@@ -5,6 +5,7 @@ Dialogs:
         asana:
           demo:
             CloseBtnLabel: Close
+            DefaultSelectValue: Select One
             FindTask:
               FindTaskLabel: Enter task id
               FindTaskTitle: Get Task Details
@@ -13,9 +14,9 @@ Dialogs:
             TaskCreation:
               AssigneeLabel: Assignee
               CreateBtnLabel: Create
-              DefaultSelect: Select One
               DueDateLabel: Due Date
               FieldSetLabel: Task Info
+              ProjectLabel: Project
               TaskNameLabel: Task Name
               Title: Task Creation
               WorkspaceLabel: Workspace
@@ -25,7 +26,7 @@ Dialogs:
               CompletedLabel: Is completed
               CreatedDateLabel: Created Date
               DefaultSelect: Select One
-              DeleteBtnLabel: Delete this task
+              DeleteBtnLabel: Delete
               DueDateLabel: 'Due Date '
               ModifiedAtLabel: Modified At
               StartDateLabel: Start Date
@@ -34,3 +35,11 @@ Dialogs:
               TaskNameLabel: Task Name
               UpdateBtnLabel: Update
               WorkspaceLabel: Workspace
+            TaskList:
+              TableActions: Actions
+              TableAssignee: Assignee
+              TableCompleted: Completed
+              TableDueDate: Due Date
+              TableId: ID
+              TableName: Name
+              TableStartDate: Start Date

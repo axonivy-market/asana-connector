@@ -1,5 +1,6 @@
 package com.axonivy.connector.asana;
 
+import java.util.List;
 import java.util.Map;
 
 import com.asana.models.Task;
@@ -9,6 +10,13 @@ public class TaskService {
 	public static Task getTask(String taskId) throws Exception {
 		return AsanaClient.client.tasks.getTask(taskId).option("pretty", true).execute();
 
+	}
+
+	public static List<Task> getTaskList(GetTasksRequest request) throws Exception {
+		return AsanaClient.client.tasks
+				.getTasksForProject(request.getProjectGid(), request.getCompletedSince(), request.getOffset(),
+						request.getLimit(), request.getOptFields(), request.getOptPretty())
+				.option("pretty", true).execute();
 	}
 
 	public static Task createTask(Map<String, Object> data) throws Exception {

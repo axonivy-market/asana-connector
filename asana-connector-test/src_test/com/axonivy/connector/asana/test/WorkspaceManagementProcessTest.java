@@ -34,5 +34,15 @@ public class WorkspaceManagementProcessTest {
 		History history = result.history();
 		assertThat(history.elementNames()).contains("getUsersFromWorkspace(String)");
 	}
+	
+	@Test
+	void getProjectsFromWorkspace(BpmClient bpmClient) throws NoSuchFieldException {
+		BpmElement startable = workspaceManagement.elementName("getProjectsFromWorkspace(String)");
+
+		ExecutionResult result = bpmClient.start().subProcess(startable).execute("123");
+
+		History history = result.history();
+		assertThat(history.elementNames()).contains("getProjectsFromWorkspace(String)");
+	}
 
 }
