@@ -1,6 +1,5 @@
 package com.axonivy.connector.asana;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class GetTasksRequest {
@@ -65,13 +64,5 @@ public class GetTasksRequest {
 	private List<String> optFields;
 	
 	private Boolean optPretty;
-	
-	
-	public static GetTasksRequest fromProjectId(String projectId) {
-		GetTasksRequest request = new GetTasksRequest();
-		request.setProjectGid(projectId);
-		request.setOptFields(Arrays.asList("name", "assignee.name", "created_at", "start_on", "due_on", "completed", "workspace.name", "modified_at"));
-		return request;
-	}
 
 }

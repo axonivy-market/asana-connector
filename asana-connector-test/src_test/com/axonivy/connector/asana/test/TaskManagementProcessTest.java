@@ -2,6 +2,7 @@ package com.axonivy.connector.asana.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,11 +51,14 @@ public class TaskManagementProcessTest {
 		History history = result.history();
 		assertThat(history.elementNames()).contains("update(Map<String, Object>,String)");
 	}
-	
+
 	@Test
 	void tasksList(BpmClient bpmClient) throws NoSuchFieldException {
 		BpmElement startable = taskManagement.elementName("getTaskList(GetTasksRequest)");
-		GetTasksRequest request = GetTasksRequest.fromProjectId("123");
+		GetTasksRequest request = new GetTasksRequest();
+		request.setProjectGid("123");
+		request.setOptFields(Arrays.asList("name", "assignee.name", "created_at", "start_on", "due_on", "completed",
+				"workspace.name", "modified_at"));
 
 		ExecutionResult result = bpmClient.start().subProcess(startable).execute(request);
 

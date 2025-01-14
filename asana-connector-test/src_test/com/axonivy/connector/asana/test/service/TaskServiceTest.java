@@ -5,6 +5,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -84,8 +85,11 @@ public class TaskServiceTest {
 
 	@Test
 	public void testGetTaskList() throws Exception {
-		GetTasksRequest request = GetTasksRequest.fromProjectId(PROJECT_ID);
-		
+		GetTasksRequest request = new GetTasksRequest();
+		request.setProjectGid(PROJECT_ID);
+		request.setOptFields(Arrays.asList("name", "assignee.name", "created_at", "start_on", "due_on", "completed",
+				"workspace.name", "modified_at"));
+
 		when(mockTasks.getTasksForProject(request.getProjectGid(), request.getCompletedSince(), request.getOffset(),
 				request.getLimit(), request.getOptFields(), request.getOptPretty())).thenReturn(mockItemCollection);
 		when(mockItemCollection.option("pretty", true)).thenReturn(mockItemCollection);

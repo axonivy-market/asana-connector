@@ -82,8 +82,12 @@
         "call" : {
           "map" : { },
           "code" : [
+            "import java.util.Arrays;",
             "import com.axonivy.connector.asana.GetTasksRequest;",
-            "param.request = GetTasksRequest.fromProjectId(in.selectedProject);"
+            "GetTasksRequest request = new GetTasksRequest();",
+            "request.setProjectGid(in.selectedProject);",
+            "request.setOptFields(Arrays.asList(\"name\", \"assignee.name\", \"created_at\", \"start_on\", \"due_on\", \"completed\", \"workspace.name\", \"modified_at\"));",
+            "param.request = request;"
           ]
         },
         "output" : {
