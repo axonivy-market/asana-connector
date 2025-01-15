@@ -13,20 +13,24 @@ public class CreateTaskRequest {
 	private LocalDate dueDate;
 
 	private String projectId;
+	
+	private LocalDate startOn;
 
 	@Override
 	public String toString() {
 		return "CreateTaskRequest [name=" + name + ", workspaceId=" + workspaceId + ", assigneeId=" + assigneeId
-				+ ", dueDate=" + dueDate + ", projectId=" + projectId + "]";
+				+ ", dueDate=" + dueDate + ", projectId=" + projectId + ", startOn=" + startOn + "]";
 	}
 
-	public CreateTaskRequest(String name, String workspaceId, String assigneeId, LocalDate dueDate, String projectId) {
+	public CreateTaskRequest(String name, String workspaceId, String assigneeId, LocalDate dueDate, String projectId,
+			LocalDate startOn) {
 		super();
 		this.name = name;
 		this.workspaceId = workspaceId;
 		this.assigneeId = assigneeId;
 		this.dueDate = dueDate;
 		this.projectId = projectId;
+		this.startOn = startOn;
 	}
 
 	public CreateTaskRequest() {
@@ -71,6 +75,14 @@ public class CreateTaskRequest {
 
 	public void setProjectId(String projectId) {
 		this.projectId = projectId;
+	}
+
+	public LocalDate getStartOn() {
+		return startOn;
+	}
+
+	public void setStartOn(LocalDate startOn) {
+		this.startOn = startOn;
 	}
 
 }

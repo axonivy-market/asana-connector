@@ -12,6 +12,7 @@ Dialogs:
               DueDateLabel: Due Date
               FieldSetLabel: Task Info
               ProjectLabel: Project
+              StartDateLabel: Start Date
               TaskNameLabel: Task Name
               Title: Task Creation
               WorkspaceLabel: Workspace

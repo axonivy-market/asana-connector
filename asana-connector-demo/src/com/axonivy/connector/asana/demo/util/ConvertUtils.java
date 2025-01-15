@@ -21,6 +21,7 @@ public class ConvertUtils {
 		data.put("workspace", request.getWorkspaceId());
 		data.put("projects", Collections.singletonList(request.getProjectId()));
 		data.put("due_on", formatter.format(request.getDueDate()));
+		data.put("start_on", formatter.format(request.getStartOn()));
 		return data;
 	}
 

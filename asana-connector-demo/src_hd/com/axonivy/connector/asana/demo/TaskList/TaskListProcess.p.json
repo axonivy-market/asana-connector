@@ -191,10 +191,10 @@
             "import javax.faces.context.FacesContext;",
             "",
             "if(in.error != \"\"){",
-            "  FacesContext.getCurrentInstance().addMessage(\"form\", new FacesMessage(FacesMessage.SEVERITY_ERROR, in.error, null));",
+            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.error, null));",
             "} else {",
             "  String message = \"Deleted task, id: \" + in.selectedTask.taskId;",
-            "  FacesContext.getCurrentInstance().addMessage(\"form\", new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));",
+            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));",
             "  out.tasks = TaskDetails.removeTask(in.tasks, in.selectedTask.taskId);",
             "}"
           ]
