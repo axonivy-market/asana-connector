@@ -9,7 +9,7 @@ Dialogs:
             CompletedLabel: Completed
             DefaultSelectValue: Select One
             DueDateLabel: Due Date
-            ProjectLabel: ''
+            ProjectLabel: Project
             StartDateLabel: Start Date
             TaskCreation:
               CreateBtnLabel: Create

@@ -35,7 +35,7 @@
 							<p:selectOneMenu id="assignee-id" required="true"
 								value="#{data.taskDetails.assigneeId}">
 								<f:selectItem
-									itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/DefaultSelect')}"
+									itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/DefaultSelectValue')}"
 									itemValue="" />
 								<f:selectItems value="#{data.users}" var="user"
 									itemValue="#{user.id}" itemLabel="#{user.name}">
