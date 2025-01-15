@@ -1,4 +1,4 @@
-package com.axonivy.connector.asana.demo;
+package com.axonivy.connector.asana.demo.util;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import com.axonivy.connector.asana.demo.model.CreateTaskRequest;
+import com.axonivy.connector.asana.demo.model.TaskDetails;
 
 public class ConvertUtils {
 

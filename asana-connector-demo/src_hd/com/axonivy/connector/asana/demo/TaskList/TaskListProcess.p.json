@@ -13,7 +13,7 @@
         "signature" : "start",
         "result" : {
           "params" : [
-            { "name" : "task", "type" : "com.axonivy.connector.asana.demo.TaskDetails", "desc" : "" }
+            { "name" : "task", "type" : "com.axonivy.connector.asana.demo.model.TaskDetails", "desc" : "" }
           ],
           "map" : {
             "result.task" : "in.selectedTask"
@@ -62,7 +62,7 @@
         "processCall" : "WorkspaceManagement:getWorkspaces()",
         "output" : {
           "code" : [
-            "import com.axonivy.connector.asana.demo.Resource;",
+            "import com.axonivy.connector.asana.demo.model.Resource;",
             "out.workspaces = Resource.fromWorkspaces(result.workspaces);"
           ]
         }
@@ -78,12 +78,12 @@
       "type" : "SubProcessCall",
       "name" : "Get Task List",
       "config" : {
-        "processCall" : "TaskManagement:getTaskList(com.axonivy.connector.asana.GetTasksRequest)",
+        "processCall" : "TaskManagement:getTaskList(com.axonivy.connector.asana.model.GetTasksRequest)",
         "call" : {
           "map" : { },
           "code" : [
             "import java.util.Arrays;",
-            "import com.axonivy.connector.asana.GetTasksRequest;",
+            "import com.axonivy.connector.asana.model.GetTasksRequest;",
             "GetTasksRequest request = new GetTasksRequest();",
             "request.setProjectGid(in.selectedProject);",
             "request.setOptFields(Arrays.asList(\"name\", \"assignee.name\", \"created_at\", \"start_on\", \"due_on\", \"completed\", \"workspace.name\", \"modified_at\"));",
@@ -92,7 +92,7 @@
         },
         "output" : {
           "code" : [
-            "import com.axonivy.connector.asana.demo.ConvertUtils;",
+            "import com.axonivy.connector.asana.demo.util.ConvertUtils;",
             "out.tasks = ConvertUtils.convertToTasks(result.tasks);"
           ]
         }
@@ -144,7 +144,7 @@
         },
         "output" : {
           "code" : [
-            "import com.axonivy.connector.asana.demo.Resource;",
+            "import com.axonivy.connector.asana.demo.model.Resource;",
             "out.projects = Resource.fromProjects(result.projects);"
           ]
         }
@@ -183,7 +183,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.connector.asana.demo.TaskDetails;",
+            "import com.axonivy.connector.asana.demo.model.TaskDetails;",
             "import com.sun.org.apache.xalan.internal.xsltc.compiler.If;",
             "import javax.faces.application.FacesMessage;",
             "import org.primefaces.context.RequestContext;",
@@ -191,10 +191,10 @@
             "import javax.faces.context.FacesContext;",
             "",
             "if(in.error != \"\"){",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.error, null));",
+            "  FacesContext.getCurrentInstance().addMessage(\"form\", new FacesMessage(FacesMessage.SEVERITY_ERROR, in.error, null));",
             "} else {",
             "  String message = \"Deleted task, id: \" + in.selectedTask.taskId;",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));",
+            "  FacesContext.getCurrentInstance().addMessage(\"form\", new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));",
             "  out.tasks = TaskDetails.removeTask(in.tasks, in.selectedTask.taskId);",
             "}"
           ]
@@ -238,7 +238,7 @@
         "signature" : "delete",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "com.axonivy.connector.asana.demo.TaskDetails", "desc" : "" }
+            { "name" : "task", "type" : "com.axonivy.connector.asana.demo.model.TaskDetails", "desc" : "" }
           ],
           "map" : {
             "out.selectedTask" : "param.task"
@@ -260,7 +260,7 @@
         "signature" : "edit",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "com.axonivy.connector.asana.demo.TaskDetails", "desc" : "" }
+            { "name" : "task", "type" : "com.axonivy.connector.asana.demo.model.TaskDetails", "desc" : "" }
           ],
           "map" : {
             "out.selectedTask" : "param.task"

@@ -87,7 +87,7 @@
       "type" : "DialogCall",
       "name" : "Task Details",
       "config" : {
-        "dialog" : "com.axonivy.connector.asana.demo.TaskRetrieval:start(com.axonivy.connector.asana.demo.TaskDetails)",
+        "dialog" : "com.axonivy.connector.asana.demo.TaskRetrieval:start(com.axonivy.connector.asana.demo.model.TaskDetails)",
         "call" : {
           "map" : {
             "param.taskDetails" : "in.taskDetails"

@@ -10,11 +10,13 @@
 		<ui:define name="title"></ui:define>
 		<ui:define name="content">
 			<h3>#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskList/Title')}</h3>
+			<p:growl />
 			<h:form id="form">
+				<p:growl id="growl" showDetail="false" />
 				<p:fieldset styleClass="border-none">
 					<p:panelGrid columns="4" styleClass="ui-panelgrid-blank ui-fluid"
-						columnClasses="ui-g-1 pl-0, ui-g-3 pl-0, ui-g-1 pl-0 pl-5, ui-g-3 pr-0 mr-0"
-						layout="grid">
+						columnClasses="ui-g-1 pl-0 m-0, ui-g-3 pl-0, ui-g-1 pl-0 pl-5, ui-g-3 pr-0 mr-0"
+						layout="flex">
 						<p:outputLabel for="workspaceId"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/WorkspaceLabel')}" />
 						<p:selectOneMenu id="workspaceId"
@@ -44,7 +46,8 @@
 					</p:panelGrid>
 				</p:fieldset>
 				<div class="ui-g-12 pb-8">
-					<p:dataTable id="task-table" styleClass="border-1 border-200"
+					<p:dataTable id="task-table" styleClass="border-1 border-200 border-round"
+						paginator="true" paginatorPosition="bottom" rows="10"
 						value="#{data.tasks}" var="task" lazy="false">
 						<p:column
 							headerText="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskList/TableId')}"
@@ -81,15 +84,13 @@
 							headerText="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskList/TableActions')}"
 							styleClass="text-center">
 							<p:commandLink id="delete" actionListener="#{logic.delete(task)}"
-								immediate="true" update="task-table"
-								styleClass="fa fa-trash mr-2" />
+								immediate="true" update="form" styleClass="fa fa-trash mr-2" />
 							<p:commandLink id="edit" actionListener="#{logic.edit(task)}"
 								styleClass="fa fa-pencil" immediate="true" />
 						</p:column>
 					</p:dataTable>
 				</div>
 			</h:form>
-
 		</ui:define>
 	</ui:composition>
 </h:body>

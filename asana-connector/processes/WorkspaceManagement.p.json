@@ -44,7 +44,7 @@
         "output" : {
           "code" : [
             "import java.util.Collections;",
-            "import com.axonivy.connector.asana.WorkspaceService;",
+            "import com.axonivy.connector.asana.service.WorkspaceService;",
             "",
             "try{",
             "  out.workspaces = WorkspaceService.getWorkspaces();",
@@ -75,7 +75,7 @@
         "output" : {
           "code" : [
             "import java.util.Collections;",
-            "import com.axonivy.connector.asana.WorkspaceService;",
+            "import com.axonivy.connector.asana.service.WorkspaceService;",
             "",
             "try{",
             "  out.users = WorkspaceService.getUsersFromWorkspace(in.workspaceId);",
@@ -138,7 +138,7 @@
         "output" : {
           "code" : [
             "import java.util.Collections;",
-            "import com.axonivy.connector.asana.WorkspaceService;",
+            "import com.axonivy.connector.asana.service.WorkspaceService;",
             "",
             "try{",
             "  out.projects = WorkspaceService.getProjectsFromWorkspace(in.workspaceId);",

@@ -1,9 +1,13 @@
-package com.axonivy.connector.asana.demo;
+package com.axonivy.connector.asana.demo.model;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Resource {
+
+	private String name;
+
+	private String id;
 
 	@Override
 	public String toString() {
@@ -35,10 +39,6 @@ public class Resource {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	private String name;
-
-	private String id;
 
 	public static List<Resource> fromWorkspaces(List<com.asana.models.Workspace> workspaces) {
 		return workspaces.stream().map(w -> new Resource(w.name, w.gid)).collect(Collectors.toList());

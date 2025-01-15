@@ -14,7 +14,7 @@
         "input" : {
           "map" : { },
           "code" : [
-            "import com.axonivy.connector.asana.demo.CreateTaskRequest;",
+            "import com.axonivy.connector.asana.demo.model.CreateTaskRequest;",
             "out.createRequest = new CreateTaskRequest();"
           ]
         },
@@ -62,7 +62,7 @@
         "call" : {
           "map" : { },
           "code" : [
-            "import com.axonivy.connector.asana.demo.ConvertUtils;",
+            "import com.axonivy.connector.asana.demo.util.ConvertUtils;",
             "param.data = ConvertUtils.toCreateData(in.createRequest);"
           ]
         },
@@ -88,7 +88,7 @@
         "signature" : "create",
         "input" : {
           "params" : [
-            { "name" : "request", "type" : "com.axonivy.connector.asana.demo.CreateTaskRequest", "desc" : "" }
+            { "name" : "request", "type" : "com.axonivy.connector.asana.demo.model.CreateTaskRequest", "desc" : "" }
           ],
           "map" : {
             "out.createRequest" : "param.request"
@@ -151,7 +151,7 @@
         "processCall" : "WorkspaceManagement:getWorkspaces()",
         "output" : {
           "code" : [
-            "import com.axonivy.connector.asana.demo.Resource;",
+            "import com.axonivy.connector.asana.demo.model.Resource;",
             "out.workspaces = Resource.fromWorkspaces(result.workspaces);"
           ]
         }
@@ -195,7 +195,7 @@
         },
         "output" : {
           "code" : [
-            "import com.axonivy.connector.asana.demo.Resource;",
+            "import com.axonivy.connector.asana.demo.model.Resource;",
             "out.users = Resource.fromUsers(result.users);"
           ]
         }
@@ -233,7 +233,7 @@
         },
         "output" : {
           "code" : [
-            "import com.axonivy.connector.asana.demo.Resource;",
+            "import com.axonivy.connector.asana.demo.model.Resource;",
             "out.projects = Resource.fromProjects(result.projects);"
           ]
         }

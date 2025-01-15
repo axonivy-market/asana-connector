@@ -1,9 +1,10 @@
-package com.axonivy.connector.asana;
+package com.axonivy.connector.asana.service;
 
 import java.util.List;
 import java.util.Map;
 
 import com.asana.models.Task;
+import com.axonivy.connector.asana.model.GetTasksRequest;
 
 public class TaskService {
 

@@ -25,9 +25,9 @@ import com.asana.models.Workspace;
 import com.asana.requests.CollectionRequest;
 import com.asana.requests.ItemRequest;
 import com.asana.resources.Tasks;
-import com.axonivy.connector.asana.AsanaClient;
-import com.axonivy.connector.asana.GetTasksRequest;
-import com.axonivy.connector.asana.TaskService;
+import com.axonivy.connector.asana.model.GetTasksRequest;
+import com.axonivy.connector.asana.service.AsanaClient;
+import com.axonivy.connector.asana.service.TaskService;
 import com.google.api.client.util.DateTime;
 import com.google.gson.JsonElement;
 

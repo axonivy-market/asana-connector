@@ -5,29 +5,28 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "tasks",
-    "type" : "java.util.List<com.axonivy.connector.asana.demo.TaskDetails>"
+    "type" : "java.util.List<com.axonivy.connector.asana.demo.model.TaskDetails>"
   }, {
     "name" : "workspaces",
-    "type" : "java.util.List<com.axonivy.connector.asana.demo.Resource>"
+    "type" : "java.util.List<com.axonivy.connector.asana.demo.model.Resource>"
   }, {
     "name" : "users",
-    "type" : "java.util.List<com.axonivy.connector.asana.demo.Resource>"
+    "type" : "java.util.List<com.axonivy.connector.asana.demo.model.Resource>"
   }, {
     "name" : "getTaskRequest",
-    "type" : "com.axonivy.connector.asana.GetTasksRequest"
+    "type" : "com.axonivy.connector.asana.model.GetTasksRequest"
   }, {
     "name" : "selectedProject",
     "type" : "String"
   }, {
     "name" : "projects",
-    "type" : "java.util.List<com.axonivy.connector.asana.demo.Resource>"
+    "type" : "java.util.List<com.axonivy.connector.asana.demo.model.Resource>"
   }, {
     "name" : "selectedWorkspace",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "String"
   }, {
     "name" : "selectedTask",
-    "type" : "com.axonivy.connector.asana.demo.TaskDetails"
+    "type" : "com.axonivy.connector.asana.demo.model.TaskDetails"
   }, {
     "name" : "error",
     "type" : "String"

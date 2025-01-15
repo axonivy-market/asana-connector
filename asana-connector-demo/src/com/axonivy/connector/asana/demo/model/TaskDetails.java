@@ -1,4 +1,4 @@
-package com.axonivy.connector.asana.demo;
+package com.axonivy.connector.asana.demo.model;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
@@ -8,6 +8,46 @@ import java.util.List;
 import com.asana.models.Task;
 
 public class TaskDetails {
+
+	public String taskId;
+
+	public String assigneeName;
+
+	public String assigneeId;
+
+	public String createdAt;
+
+	public boolean completed;
+
+	public String name;
+
+	public LocalDate startOn;
+
+	public String workspace;
+
+	public String workspaceId;
+
+	public LocalDate dueDate;
+
+	public String modifiedAt;
+
+	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+
+	public static TaskDetails from(Task task) {
+		LocalDate startOn = task.startOn != null ? LocalDate.parse(task.startOn.toString()) : LocalDate.now();
+		LocalDate dueDate = task.dueOn != null ? LocalDate.parse(task.dueOn.toString()) : LocalDate.now();
+		String assignee = task.assignee != null ? task.assignee.name : "";
+		String assigneeId = task.assignee != null ? task.assignee.gid : "";
+
+		return new TaskDetails(task.gid, assignee, assigneeId,
+				ZonedDateTime.parse(task.createdAt.toString()).format(formatter), task.completed, task.name, startOn,
+				task.workspace.name, task.workspace.gid, dueDate,
+				ZonedDateTime.parse(task.modifiedAt.toString()).format(formatter));
+	}
+
+	public static List<TaskDetails> removeTask(List<TaskDetails> tasks, String taskId) {
+		return tasks.stream().filter(t -> t.getTaskId() != taskId).toList();
+	}
 
 	public TaskDetails() {
 
@@ -124,46 +164,6 @@ public class TaskDetails {
 
 	public void setModifiedAt(String modifiedAt) {
 		this.modifiedAt = modifiedAt;
-	}
-
-	public String taskId;
-
-	public String assigneeName;
-
-	public String assigneeId;
-
-	public String createdAt;
-
-	public boolean completed;
-
-	public String name;
-
-	public LocalDate startOn;
-
-	public String workspace;
-
-	public String workspaceId;
-
-	public LocalDate dueDate;
-
-	public String modifiedAt;
-
-	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-
-	public static TaskDetails from(Task task) {
-		LocalDate startOn = task.startOn != null ? LocalDate.parse(task.startOn.toString()) : LocalDate.now();
-		LocalDate dueDate = task.dueOn != null ? LocalDate.parse(task.dueOn.toString()) : LocalDate.now();
-		String assignee = task.assignee != null ? task.assignee.name : "";
-		String assigneeId = task.assignee != null ? task.assignee.gid : "";
-
-		return new TaskDetails(task.gid, assignee, assigneeId,
-				ZonedDateTime.parse(task.createdAt.toString()).format(formatter), task.completed, task.name, startOn,
-				task.workspace.name, task.workspace.gid, dueDate,
-				ZonedDateTime.parse(task.modifiedAt.toString()).format(formatter));
-	}
-	
-	public static List<TaskDetails> removeTask(List<TaskDetails> tasks, String taskId) {
-		return tasks.stream().filter(t -> t.getTaskId() != taskId).toList();
 	}
 
 }

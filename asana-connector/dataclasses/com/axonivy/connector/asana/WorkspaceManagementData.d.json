@@ -8,8 +8,7 @@
     "type" : "java.util.List<com.asana.models.Workspace>"
   }, {
     "name" : "workspaceId",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "String"
   }, {
     "name" : "users",
     "type" : "java.util.List<com.asana.models.User>"

@@ -1,8 +1,18 @@
-package com.axonivy.connector.asana.demo;
+package com.axonivy.connector.asana.demo.model;
 
 import java.time.LocalDate;
 
 public class CreateTaskRequest {
+
+	private String name;
+
+	private String workspaceId;
+
+	private String assigneeId;
+
+	private LocalDate dueDate;
+
+	private String projectId;
 
 	@Override
 	public String toString() {
@@ -62,15 +72,5 @@ public class CreateTaskRequest {
 	public void setProjectId(String projectId) {
 		this.projectId = projectId;
 	}
-
-	private String name;
-
-	private String workspaceId;
-
-	private String assigneeId;
-
-	private LocalDate dueDate;
-
-	private String projectId;
 
 }

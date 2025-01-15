@@ -19,7 +19,7 @@ Dialogs:
             TaskDetails:
               AssigneeLabel: Assignee
               CompletedLabel: Completed
-              CreatedDateLabel: Created Date
+              CreatedDateLabel: Created At
               DefaultSelect: Select One
               DeleteBtnLabel: Delete
               DueDateLabel: 'Due Date '

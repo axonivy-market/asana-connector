@@ -1,4 +1,4 @@
-package com.axonivy.connector.asana;
+package com.axonivy.connector.asana.model;
 
 import java.util.List;
 

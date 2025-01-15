@@ -5,6 +5,6 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "taskDetails",
-    "type" : "com.axonivy.connector.asana.demo.TaskDetails"
+    "type" : "com.axonivy.connector.asana.demo.model.TaskDetails"
   } ]
 }

@@ -21,8 +21,8 @@ import com.asana.requests.CollectionRequest;
 import com.asana.resources.Projects;
 import com.asana.resources.Users;
 import com.asana.resources.Workspaces;
-import com.axonivy.connector.asana.AsanaClient;
-import com.axonivy.connector.asana.WorkspaceService;
+import com.axonivy.connector.asana.service.AsanaClient;
+import com.axonivy.connector.asana.service.WorkspaceService;
 
 import ch.ivyteam.ivy.environment.IvyTest;
 

@@ -5,12 +5,10 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "error",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "String"
   }, {
     "name" : "taskId",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "String"
   }, {
     "name" : "data",
     "type" : "java.util.Map<String, Object>"
@@ -22,6 +20,6 @@
     "type" : "java.util.List<com.asana.models.Task>"
   }, {
     "name" : "getTaskRequest",
-    "type" : "com.axonivy.connector.asana.GetTasksRequest"
+    "type" : "com.axonivy.connector.asana.model.GetTasksRequest"
   } ]
 }
