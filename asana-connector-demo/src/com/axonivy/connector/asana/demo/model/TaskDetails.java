@@ -56,7 +56,6 @@ public class TaskDetails {
 	public TaskDetails(String taskId, String assigneeName, String assigneeId, String createdAt, boolean completed,
 			String name, LocalDate startOn, String workspace, String workspaceId, LocalDate dueDate,
 			String modifiedAt) {
-		super();
 		this.taskId = taskId;
 		this.assigneeName = assigneeName;
 		this.assigneeId = assigneeId;

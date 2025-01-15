@@ -50,8 +50,6 @@ public class WorkspaceServiceTest {
 	
 	@Mock
 	private Projects mockProjects;
-	
-	
 
 	@BeforeEach
 	public void setup() {

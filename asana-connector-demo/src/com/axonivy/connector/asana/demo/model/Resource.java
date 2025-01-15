@@ -15,11 +15,9 @@ public class Resource {
 	}
 
 	public Resource() {
-		super();
 	}
 
 	public Resource(String name, String id) {
-		super();
 		this.name = name;
 		this.id = id;
 	}

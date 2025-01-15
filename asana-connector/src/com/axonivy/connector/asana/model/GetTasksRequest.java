@@ -3,7 +3,7 @@ package com.axonivy.connector.asana.model;
 import java.util.List;
 
 public class GetTasksRequest {
-	
+
 	private String projectGid;
 
 	private String completedSince;
@@ -17,7 +17,6 @@ public class GetTasksRequest {
 	private Boolean optPretty;
 
 	public GetTasksRequest() {
-		super();
 	}
 
 	public String getProjectGid() {
@@ -70,7 +69,6 @@ public class GetTasksRequest {
 
 	public GetTasksRequest(String projectGid, String completedSince, String offset, Integer limit,
 			List<String> optFields, Boolean optPretty) {
-		super();
 		this.projectGid = projectGid;
 		this.completedSince = completedSince;
 		this.offset = offset;

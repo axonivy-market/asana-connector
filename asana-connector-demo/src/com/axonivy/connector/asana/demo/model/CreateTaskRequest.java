@@ -24,7 +24,6 @@ public class CreateTaskRequest {
 
 	public CreateTaskRequest(String name, String workspaceId, String assigneeId, LocalDate dueDate, String projectId,
 			LocalDate startOn) {
-		super();
 		this.name = name;
 		this.workspaceId = workspaceId;
 		this.assigneeId = assigneeId;
@@ -34,7 +33,6 @@ public class CreateTaskRequest {
 	}
 
 	public CreateTaskRequest() {
-		super();
 	}
 
 	public String getName() {

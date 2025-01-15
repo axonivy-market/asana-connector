@@ -50,7 +50,7 @@
     }, {
       "id" : "f13",
       "type" : "DialogCall",
-      "name" : "Get Tasks List",
+      "name" : "Get Task List",
       "config" : {
         "dialog" : "com.axonivy.connector.asana.demo.TaskList:start()",
         "output" : {

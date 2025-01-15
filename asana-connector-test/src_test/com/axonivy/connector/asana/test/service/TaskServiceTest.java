@@ -21,11 +21,11 @@ import com.asana.requests.ItemRequest;
 import com.asana.resources.Tasks;
 import com.axonivy.connector.asana.model.GetTasksRequest;
 import com.axonivy.connector.asana.service.AsanaClient;
+import com.axonivy.connector.asana.service.TaskService;
 import com.axonivy.connector.asana.test.mock.MockData;
 import com.google.gson.JsonElement;
 
 import ch.ivyteam.ivy.environment.IvyTest;
-import ch.ivyteam.ivy.process.model.service.TaskService;
 
 @IvyTest
 public class TaskServiceTest {

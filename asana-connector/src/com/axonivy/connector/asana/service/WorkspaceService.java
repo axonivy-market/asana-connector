@@ -17,7 +17,6 @@ public class WorkspaceService {
 	}
 
 	public static List<Project> getProjectsFromWorkspace(String workspaceId) throws Exception {
-
 		List<Project> result = AsanaClient.client.projects.getProjects(null, null, workspaceId).option("pretty", true)
 				.execute();
 		return result;

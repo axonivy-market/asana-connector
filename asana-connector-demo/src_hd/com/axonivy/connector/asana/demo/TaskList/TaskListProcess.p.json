@@ -185,8 +185,6 @@
           "code" : [
             "import com.axonivy.connector.asana.demo.model.TaskDetails;",
             "import javax.faces.application.FacesMessage;",
-            "import org.primefaces.context.RequestContext;",
-            "import org.primefaces.component.inputtext.InputText;",
             "import javax.faces.context.FacesContext;",
             "",
             "if(in.error != \"\"){",
@@ -291,10 +289,7 @@
             "out" : "in",
             "out.selectedTask" : "in.selectedTask"
           },
-          "code" : [
-            "ivy.log.info(\"----{0}\", in.selectedProject);",
-            "out.selectedTask = in.selectedTask;"
-          ]
+          "code" : "out.selectedTask = in.selectedTask;"
         }
       },
       "visual" : {

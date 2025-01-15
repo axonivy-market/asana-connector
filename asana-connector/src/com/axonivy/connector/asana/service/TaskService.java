@@ -10,7 +10,6 @@ public class TaskService {
 
 	public static Task getTask(String taskId) throws Exception {
 		return AsanaClient.client.tasks.getTask(taskId).option("pretty", true).execute();
-
 	}
 
 	public static List<Task> getTaskList(GetTasksRequest request) throws Exception {
