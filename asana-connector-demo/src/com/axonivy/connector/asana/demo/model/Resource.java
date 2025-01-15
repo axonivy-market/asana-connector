@@ -41,15 +41,16 @@ public class Resource {
 	}
 
 	public static List<Resource> fromWorkspaces(List<com.asana.models.Workspace> workspaces) {
-		return workspaces.stream().map(w -> new Resource(w.name, w.gid)).collect(Collectors.toList());
+		return workspaces.stream().map(workspace -> new Resource(workspace.name, workspace.gid))
+				.collect(Collectors.toList());
 	}
 
 	public static List<Resource> fromUsers(List<com.asana.models.User> users) {
-		return users.stream().map(w -> new Resource(w.name, w.gid)).collect(Collectors.toList());
+		return users.stream().map(user -> new Resource(user.name, user.gid)).collect(Collectors.toList());
 	}
 
 	public static List<Resource> fromProjects(List<com.asana.models.Project> projects) {
-		return projects.stream().map(w -> new Resource(w.name, w.gid)).collect(Collectors.toList());
+		return projects.stream().map(project -> new Resource(project.name, project.gid)).collect(Collectors.toList());
 	}
 
 }

@@ -2,13 +2,10 @@ package com.axonivy.connector.asana.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.connector.asana.model.GetTasksRequest;
+import com.axonivy.connector.asana.test.mock.MockData;
 
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
 import ch.ivyteam.ivy.bpm.engine.client.ExecutionResult;
@@ -23,43 +20,29 @@ public class TaskManagementProcessTest {
 	private static final BpmProcess taskManagement = BpmProcess.name("TaskManagement");
 
 	@Test
-	void taskCreation(BpmClient bpmClient) throws NoSuchFieldException {
+	void testTaskCreation(BpmClient bpmClient) throws NoSuchFieldException {
 		BpmElement startable = taskManagement.elementName("create(Map<String, Object>)");
-		Map<String, Object> data = new HashMap<>();
-		data.put("name", "1");
-		data.put("assignee", "12");
-		data.put("workspace", "12");
-		data.put("due_on", "2101-02-12");
-
-		ExecutionResult result = bpmClient.start().subProcess(startable).execute(data);
+		
+		ExecutionResult result = bpmClient.start().subProcess(startable).execute(MockData.getMockDataMap());
 
 		History history = result.history();
 		assertThat(history.elementNames()).contains("create(Map<String, Object>)");
 	}
 
 	@Test
-	void taskUpdate(BpmClient bpmClient) throws NoSuchFieldException {
+	void testTaskUpdate(BpmClient bpmClient) throws NoSuchFieldException {
 		BpmElement startable = taskManagement.elementName("update(Map<String, Object>,String)");
-		Map<String, Object> data = new HashMap<>();
-		data.put("name", "1");
-		data.put("assignee", "12");
-		data.put("workspace", "12");
-		data.put("due_on", "2101-02-12");
 
-		ExecutionResult result = bpmClient.start().subProcess(startable).execute("1", data);
+		ExecutionResult result = bpmClient.start().subProcess(startable).execute("1", MockData.getMockDataMap());
 
 		History history = result.history();
 		assertThat(history.elementNames()).contains("update(Map<String, Object>,String)");
 	}
 
 	@Test
-	void tasksList(BpmClient bpmClient) throws NoSuchFieldException {
+	void testTasksList(BpmClient bpmClient) throws NoSuchFieldException {
 		BpmElement startable = taskManagement.elementName("getTaskList(GetTasksRequest)");
-		GetTasksRequest request = new GetTasksRequest();
-		request.setProjectGid("123");
-		request.setOptFields(Arrays.asList("name", "assignee.name", "created_at", "start_on", "due_on", "completed",
-				"workspace.name", "modified_at"));
-
+		GetTasksRequest request = MockData.getMockGetTasksRequest();
 		ExecutionResult result = bpmClient.start().subProcess(startable).execute(request);
 
 		History history = result.history();

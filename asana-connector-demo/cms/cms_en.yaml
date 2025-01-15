@@ -4,39 +4,30 @@ Dialogs:
       connector:
         asana:
           demo:
+            AssigneeLabel: Assignee
             CloseBtnLabel: Close
+            CompletedLabel: Completed
             DefaultSelectValue: Select One
+            DueDateLabel: Due Date
+            ProjectLabel: ''
+            StartDateLabel: Start Date
             TaskCreation:
-              AssigneeLabel: Assignee
               CreateBtnLabel: Create
-              DueDateLabel: Due Date
               FieldSetLabel: Task Info
-              ProjectLabel: Project
-              StartDateLabel: Start Date
-              TaskNameLabel: Task Name
+              Label: Create a new task.
               Title: Task Creation
-              WorkspaceLabel: Workspace
-              label: Create a new task.
             TaskDetails:
-              AssigneeLabel: Assignee
-              CompletedLabel: Completed
               CreatedDateLabel: Created At
-              DefaultSelect: Select One
               DeleteBtnLabel: Delete
-              DueDateLabel: 'Due Date '
               ModifiedAtLabel: Modified At
               StartDateLabel: Start Date
               TaskDetailsTitle: Update Task
               TaskInfoLabel: Task Info
-              TaskNameLabel: Task Name
               UpdateBtnLabel: Update
-              WorkspaceLabel: Workspace
             TaskList:
               TableActions: Actions
-              TableAssignee: Assignee
               TableCompleted: Completed
-              TableDueDate: Due Date
               TableId: ID
-              TableName: Name
-              TableStartDate: Start Date
               Title: Task List View
+            TaskNameLabel: Task Name
+            WorkspaceLabel: Workspace

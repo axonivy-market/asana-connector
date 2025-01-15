@@ -122,7 +122,6 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.sun.org.apache.xalan.internal.xsltc.compiler.If;",
             "import javax.faces.application.FacesMessage;",
             "import org.primefaces.context.RequestContext;",
             "import org.primefaces.component.inputtext.InputText;",

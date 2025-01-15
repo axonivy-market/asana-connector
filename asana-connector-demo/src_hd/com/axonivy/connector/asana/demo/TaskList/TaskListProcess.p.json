@@ -184,7 +184,6 @@
         "output" : {
           "code" : [
             "import com.axonivy.connector.asana.demo.model.TaskDetails;",
-            "import com.sun.org.apache.xalan.internal.xsltc.compiler.If;",
             "import javax.faces.application.FacesMessage;",
             "import org.primefaces.context.RequestContext;",
             "import org.primefaces.component.inputtext.InputText;",

@@ -17,7 +17,7 @@ public class WorkspaceManagementProcessTest {
 	private static final BpmProcess workspaceManagement = BpmProcess.name("WorkspaceManagement");
 
 	@Test
-	void getWorkspaces(BpmClient bpmClient) throws NoSuchFieldException {
+	void testGetWorkspaces(BpmClient bpmClient) throws NoSuchFieldException {
 		BpmElement startable = workspaceManagement.elementName("getWorkspaces()");
 		ExecutionResult result = bpmClient.start().subProcess(startable).execute();
 
@@ -26,7 +26,7 @@ public class WorkspaceManagementProcessTest {
 	}
 
 	@Test
-	void getUsersFromWorkspace(BpmClient bpmClient) throws NoSuchFieldException {
+	void testGetUsersFromWorkspace(BpmClient bpmClient) throws NoSuchFieldException {
 		BpmElement startable = workspaceManagement.elementName("getUsersFromWorkspace(String)");
 
 		ExecutionResult result = bpmClient.start().subProcess(startable).execute("123");
@@ -36,7 +36,7 @@ public class WorkspaceManagementProcessTest {
 	}
 	
 	@Test
-	void getProjectsFromWorkspace(BpmClient bpmClient) throws NoSuchFieldException {
+	void testGetProjectsFromWorkspace(BpmClient bpmClient) throws NoSuchFieldException {
 		BpmElement startable = workspaceManagement.elementName("getProjectsFromWorkspace(String)");
 
 		ExecutionResult result = bpmClient.start().subProcess(startable).execute("123");

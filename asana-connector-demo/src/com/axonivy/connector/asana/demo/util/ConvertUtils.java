@@ -36,7 +36,7 @@ public class ConvertUtils {
 	}
 
 	public static List<TaskDetails> convertToTasks(List<com.asana.models.Task> tasks) {
-		List<TaskDetails> result = tasks.stream().map(w -> TaskDetails.from(w)).collect(Collectors.toList());
+		List<TaskDetails> result = tasks.stream().map(task -> TaskDetails.from(task)).collect(Collectors.toList());
 		return result;
 	}
 

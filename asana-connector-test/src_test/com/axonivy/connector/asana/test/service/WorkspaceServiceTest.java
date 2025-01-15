@@ -23,6 +23,7 @@ import com.asana.resources.Users;
 import com.asana.resources.Workspaces;
 import com.axonivy.connector.asana.service.AsanaClient;
 import com.axonivy.connector.asana.service.WorkspaceService;
+import com.axonivy.connector.asana.test.mock.MockData;
 
 import ch.ivyteam.ivy.environment.IvyTest;
 
@@ -50,7 +51,7 @@ public class WorkspaceServiceTest {
 	@Mock
 	private Projects mockProjects;
 	
-	private static final String GID = "12345";
+	
 
 	@BeforeEach
 	public void setup() {
@@ -64,7 +65,7 @@ public class WorkspaceServiceTest {
 	@Test
 	public void testGetWorkspaces() throws Exception {
 		Workspace workspace = new Workspace();
-		workspace.gid = GID;
+		workspace.gid = MockData.GID;
 		workspace.name = "workspace";
 		List<Workspace> workspaces = Collections.singletonList(workspace);
 
@@ -82,37 +83,37 @@ public class WorkspaceServiceTest {
 	@Test
 	public void testGetUsersFromWorkspace() throws Exception {
 		User user = new User();
-		user.gid = GID;
+		user.gid = MockData.GID;
 		user.name = "workspace";
 		List<User> users = Collections.singletonList(user);
 
-		when(mockUsers.getUsersForWorkspace(GID)).thenReturn(mockUserRequest);
+		when(mockUsers.getUsersForWorkspace(MockData.GID)).thenReturn(mockUserRequest);
 		when(mockUserRequest.option("pretty", true)).thenReturn(mockUserRequest);
 		when(mockUserRequest.execute()).thenReturn(users);
 
-		List<User> results = WorkspaceService.getUsersFromWorkspace(GID);
+		List<User> results = WorkspaceService.getUsersFromWorkspace(MockData.GID);
 
 		Assertions.assertNotNull(results);
 		Assertions.assertEquals(results.size(), users.size());
-		verify(mockClient.users, times(1)).getUsersForWorkspace(GID);
+		verify(mockClient.users, times(1)).getUsersForWorkspace(MockData.GID);
 	}
 	
 	@Test
 	public void testGetProjectsFromWorkspace() throws Exception {
 		Project project = new Project();
-		project.gid = GID;
+		project.gid = MockData.GID;
 		project.name = "workspace";
 		List<Project> projects = Collections.singletonList(project);
 
-		when(mockProjects.getProjects(null, null, GID)).thenReturn(mockProjectRequest);
+		when(mockProjects.getProjects(null, null, MockData.GID)).thenReturn(mockProjectRequest);
 		when(mockProjectRequest.option("pretty", true)).thenReturn(mockProjectRequest);
 		when(mockProjectRequest.execute()).thenReturn(projects);
 
-		List<Project> results = WorkspaceService.getProjectsFromWorkspace(GID);
+		List<Project> results = WorkspaceService.getProjectsFromWorkspace(MockData.GID);
 
 		Assertions.assertNotNull(results);
 		Assertions.assertEquals(results.size(), projects.size());
-		verify(mockClient.projects, times(1)).getProjects(null, null, GID);
+		verify(mockClient.projects, times(1)).getProjects(null, null, MockData.GID);
 	}
 
 }
