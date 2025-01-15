@@ -17,62 +17,80 @@
 				<p:fieldset
 					legend="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/FieldSetLabel')}">
 					<p:panelGrid columns="6" styleClass="ui-panelgrid-blank ui-fluid"
-						columnClasses="ui-g-2 pl-0, ui-g-3 pl-0, ui-g-1 pl-0, ui-g-2 pl-3, ui-g-3 pl-0, ui-g-1 pr-0 mr-0"
+						columnClasses="ui-g-2 pl-0, ui-g-3 pl-0, ui-g-1 pl-0, ui-g-1 pl-3, ui-g-2 pl-0, ui-g-3 pr-0 mr-0"
 						layout="flex">
 						<p:outputLabel for="name"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/TaskNameLabel')}" />
-						<p:inputText id="name" required="true" requiredMessage="Name is required"
-							styleClass="align-items-start" value="#{data.createRequest.name}" />
-						<p:message for="name" display="text" showDetail="true" />
+						<h:panelGroup styleClass="md-inputfield">
+							<p:inputText id="name" required="true"
+								requiredMessage="Name is required"
+								styleClass="align-items-start"
+								value="#{data.createRequest.name}" />
+							<p:message for="name" display="text" showDetail="true" />
+						</h:panelGroup>
+
+						<p:outputLabel value="" />
+						<p:outputLabel value="" />
 
 						<p:outputLabel for="dueDate"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/DueDateLabel')}" />
-						<p:datePicker id="dueDate" required="true"
-							value="#{data.createRequest.dueDate}" showIcon="true" />
-						<p:message for="dueDate" display="text" showDetail="true" />
+						<h:panelGroup styleClass="md-inputfield">
+							<p:datePicker id="dueDate" required="true"
+								value="#{data.createRequest.dueDate}" showIcon="true" />
+							<p:message for="dueDate" display="text" showDetail="true" />
+						</h:panelGroup>
 
 						<p:outputLabel for="workspaceId"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/WorkspaceLabel')}" />
-						<p:selectOneMenu id="workspaceId" required="true"
-							value="#{data.createRequest.workspaceId}">
-							<f:selectItem
-								itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/DefaultSelectValue')}"
-								itemValue="" />
-							<f:selectItems value="#{data.workspaces}" var="workspace"
-								itemValue="#{workspace.id}" itemLabel="#{workspace.name}">
-							</f:selectItems>
-							<p:ajax event="change" update="assigneeId"
-								listener="#{logic.getUsersFromWorkspace(data.createRequest.workspaceId)}" />
-							<p:ajax event="change" update="projectId"
-								listener="#{logic.getProjects}" />
-						</p:selectOneMenu>
-						<p:message for="workspaceId" display="text" showDetail="true" />
+						<h:panelGroup styleClass="md-inputfield">
+							<p:selectOneMenu id="workspaceId" required="true"
+								value="#{data.createRequest.workspaceId}">
+								<f:selectItem
+									itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/DefaultSelectValue')}"
+									itemValue="" />
+								<f:selectItems value="#{data.workspaces}" var="workspace"
+									itemValue="#{workspace.id}" itemLabel="#{workspace.name}">
+								</f:selectItems>
+								<p:ajax event="change" update="assigneeId"
+									listener="#{logic.getUsersFromWorkspace(data.createRequest.workspaceId)}" />
+								<p:ajax event="change" update="projectId"
+									listener="#{logic.getProjects}" />
+							</p:selectOneMenu>
+							<p:message for="workspaceId" display="text" showDetail="true" />
+						</h:panelGroup>
+
+						<p:outputLabel value="" />
+						<p:outputLabel value="" />
 
 						<p:outputLabel for="projectId"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/ProjectLabel')}" />
-						<p:selectOneMenu id="projectId" required="true"
-							value="#{data.createRequest.projectId}">
-							<f:selectItem
-								itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/DefaultSelectValue')}"
-								itemValue="" />
-							<f:selectItems value="#{data.projects}" var="project"
-								itemValue="#{project.id}" itemLabel="#{project.name}">
-							</f:selectItems>
-						</p:selectOneMenu>
-						<p:message for="projectId" display="text" showDetail="true" />
+						<h:panelGroup styleClass="md-inputfield">
+							<p:selectOneMenu id="projectId" required="true"
+								value="#{data.createRequest.projectId}">
+								<f:selectItem
+									itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/DefaultSelectValue')}"
+									itemValue="" />
+								<f:selectItems value="#{data.projects}" var="project"
+									itemValue="#{project.id}" itemLabel="#{project.name}">
+								</f:selectItems>
+							</p:selectOneMenu>
+							<p:message for="projectId" display="text" showDetail="true" />
+						</h:panelGroup>
 
 						<p:outputLabel for="assigneeId"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/AssigneeLabel')}" />
-						<p:selectOneMenu id="assigneeId" required="true"
-							value="#{data.createRequest.assigneeId}">
-							<f:selectItem
-								itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/DefaultSelectValue')}"
-								itemValue="" />
-							<f:selectItems value="#{data.users}" var="user"
-								itemValue="#{user.id}" itemLabel="#{user.name}">
-							</f:selectItems>
-						</p:selectOneMenu>
-						<p:message for="assigneeId" display="text" showDetail="true" />
+						<h:panelGroup styleClass="md-inputfield">
+							<p:selectOneMenu id="assigneeId" required="true"
+								value="#{data.createRequest.assigneeId}">
+								<f:selectItem
+									itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/DefaultSelectValue')}"
+									itemValue="" />
+								<f:selectItems value="#{data.users}" var="user"
+									itemValue="#{user.id}" itemLabel="#{user.name}">
+								</f:selectItems>
+							</p:selectOneMenu>
+							<p:message for="assigneeId" display="text" showDetail="true" />
+						</h:panelGroup>
 					</p:panelGrid>
 				</p:fieldset>
 				<br />

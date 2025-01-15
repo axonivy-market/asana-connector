@@ -12,7 +12,7 @@
 			<h3>#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/TaskDetailsTitle')}</h3>
 			<p:growl />
 			<h:form id="form">
-				<p:growl id="growl" showDetail="false" />
+				<p:growl id="growl" showDetail="false" globalOnly="true" />
 				<p:fieldset
 					legend="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/TaskInfoLabel')}">
 					<p:panelGrid columns="6" styleClass="ui-panelgrid-blank ui-fluid"
@@ -20,23 +20,29 @@
 						layout="grid">
 						<p:outputLabel for="name"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/TaskNameLabel')}" />
-						<p:inputText id="name" required="true"
-							value="#{data.taskDetails.name}" />
+						<h:panelGroup styleClass="md-inputfield">
+							<p:inputText id="name" required="true"
+								value="#{data.taskDetails.name}" />
+							<p:message for="name" display="text" showDetail="true" />
+						</h:panelGroup>
 
 						<p:outputLabel value="" />
 						<p:outputLabel value="" />
 
 						<p:outputLabel for="assigneeId"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/AssigneeLabel')}" />
-						<p:selectOneMenu id="assigneeId" required="true"
-							value="#{data.taskDetails.assigneeId}">
-							<f:selectItem
-								itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/DefaultSelect')}"
-								itemValue="" />
-							<f:selectItems value="#{data.users}" var="user"
-								itemValue="#{user.id}" itemLabel="#{user.name}">
-							</f:selectItems>
-						</p:selectOneMenu>
+						<h:panelGroup styleClass="md-inputfield">
+							<p:selectOneMenu id="assigneeId" required="true"
+								value="#{data.taskDetails.assigneeId}">
+								<f:selectItem
+									itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/DefaultSelect')}"
+									itemValue="" />
+								<f:selectItems value="#{data.users}" var="user"
+									itemValue="#{user.id}" itemLabel="#{user.name}">
+								</f:selectItems>
+							</p:selectOneMenu>
+							<p:message for="assigneeId" display="text" showDetail="true" />
+						</h:panelGroup>
 
 						<p:outputLabel for="modifiedAt"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/ModifiedAtLabel')}" />
@@ -61,8 +67,11 @@
 
 						<p:outputLabel for="startOn"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/StartDateLabel')}" />
-						<p:datePicker id="startOn" required="true"
-							value="#{data.taskDetails.startOn}" showIcon="true" />
+						<h:panelGroup styleClass="md-inputfield">
+							<p:datePicker id="startOn" required="true"
+								value="#{data.taskDetails.startOn}" showIcon="true" />
+							<p:message for="startOn" display="text" showDetail="true" />
+						</h:panelGroup>
 
 						<p:outputLabel for="completed"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/CompletedLabel')}" />
@@ -74,8 +83,11 @@
 
 						<p:outputLabel for="dueDate"
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/DueDateLabel')}" />
-						<p:datePicker id="dueDate" required="true"
-							value="#{data.taskDetails.dueDate}" showIcon="true" />
+						<h:panelGroup styleClass="md-inputfield">
+							<p:datePicker id="dueDate" required="true"
+								value="#{data.taskDetails.dueDate}" showIcon="true" />
+							<p:message for="dueDate" display="text" showDetail="true" />
+						</h:panelGroup>
 					</p:panelGrid>
 				</p:fieldset>
 				<br />
