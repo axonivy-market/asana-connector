@@ -20,6 +20,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.connector.asana.service.TaskService;",
+            "",
             "try{",
             "  out.task = TaskService.updateTask(in.taskId, in.data);",
             "} catch(Exception ex) {",
@@ -87,6 +88,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.connector.asana.service.TaskService;",
+            "",
             "try{",
             "  out.task = TaskService.createTask(in.data);",
             "} catch(Exception ex) {",
@@ -152,6 +154,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.connector.asana.service.TaskService;",
+            "",
             "try{",
             "  TaskService.deleteTask(in.taskId);",
             "} catch(Exception ex) {",
@@ -216,6 +219,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.connector.asana.service.TaskService;",
+            "",
             "try{",
             "  out.task = TaskService.getTask(in.taskId);",
             "} catch(Exception ex) {",
@@ -279,6 +283,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.connector.asana.service.TaskService;",
+            "",
             "try{",
             "  out.tasks = TaskService.getTaskList(in.getTaskRequest);",
             "} catch(Exception ex) {",
