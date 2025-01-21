@@ -22,7 +22,7 @@ public class TaskManagementProcessTest {
 	@Test
 	void testTaskCreation(BpmClient bpmClient) throws NoSuchFieldException {
 		BpmElement startable = taskManagement.elementName("create(Map<String, Object>)");
-		
+
 		ExecutionResult result = bpmClient.start().subProcess(startable).execute(MockData.getMockDataMap());
 
 		History history = result.history();
