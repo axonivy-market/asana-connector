@@ -44,5 +44,5 @@ Add the following code block to your `config/variables.yaml` file of your main B
 1. Register for an Asana account on the [Asana Dashboard](https://asana.com/)
 1. Once logged in, [Create a PAT](https://app.asana.com/0/my-apps)
 (Personal access token), which you will later add to the `variables.yaml`.
-    ![create-pat](img/create-pat.png).
+![create-pat](img/create-pat.png).
 1. Refer to the [Quick start guide](https://developers.asana.com/docs/quick-start) to learn how to access your Workspace GID.
