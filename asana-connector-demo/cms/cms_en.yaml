@@ -13,20 +13,17 @@ Dialogs:
             StartDateLabel: Start Date
             TaskCreation:
               CreateBtnLabel: Create
-              FieldSetLabel: Task Info
               Label: Create a new task.
               Title: Task Creation
             TaskDetails:
               CreatedDateLabel: Created At
               DeleteBtnLabel: Delete
               ModifiedAtLabel: Modified At
-              StartDateLabel: Start Date
               TaskDetailsTitle: Update Task
-              TaskInfoLabel: Task Info
               UpdateBtnLabel: Update
+            TaskInfoLabel: Task Info
             TaskList:
               TableActions: Actions
-              TableCompleted: Completed
               TableId: ID
               Title: Task List View
             TaskNameLabel: Task Name

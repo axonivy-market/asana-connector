@@ -14,10 +14,20 @@ Check out the demo implementations we have prepared for the Asana connector:
 
 ![demo-process](demo-process.png).
 
-This demo includes two main processes:
-- getTaskDetails: Validates the input task ID and redirects to the task details screen, where update and delete actions can be performed.
-- createTask: Creates a new task with sample data (e.g., task name, workspace, assignee, and due date).
-
+This demo provides the following features:
+1. Create Task
+- Creates a new task with sample data (e.g., task name, workspace, project, assignee, start date and due date).
+- `Project` and `Assignee` will be fetched base on the selected `Workspace`.
+- If the provided `Personal Access Token (PAT)` is invalid, the `Workspace` data will be empty. 
+![task-creation](task-creation.png).
+2. Task List
+- Shows a table of tasks base on selected `Workspace` and `Project`
+- Two actions can be performed in the `Actions` column: `Delete` and `Update`.
+- Clicking `Update` will navigate user to the `Update` page.
+![task-table](task-table.png).
+3. Update Task
+- Allows editing task details such as the task name, assignee, start date, and due date.
+![task-update](task-update.png).
 ## Setup
 
 In order to use this product you must configure the variables.

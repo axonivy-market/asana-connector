@@ -7,14 +7,13 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
 	<ui:composition template="/layouts/frame-10-full-width.xhtml">
-		<ui:define name="title">#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/TaskDetailsTitle')}</ui:define>
 		<ui:define name="content">
 			<h3>#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/TaskDetailsTitle')}</h3>
 			<p:growl />
 			<h:form id="form">
 				<p:growl id="growl" showDetail="false" globalOnly="true" />
 				<p:fieldset
-					legend="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/TaskInfoLabel')}">
+					legend="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskInfoLabel')}">
 					<p:panelGrid columns="6" styleClass="ui-panelgrid-blank ui-fluid"
 						columnClasses="ui-g-2 pl-0, ui-g-3 pl-0, ui-g-1 pl-0, ui-g-1 pl-0, ui-g-2 pl-5, ui-g-3 pr-0 mr-0"
 						layout="grid">
@@ -38,8 +37,7 @@
 									itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/DefaultSelectValue')}"
 									itemValue="" />
 								<f:selectItems value="#{data.users}" var="user"
-									itemValue="#{user.id}" itemLabel="#{user.name}">
-								</f:selectItems>
+									itemValue="#{user.id}" itemLabel="#{user.name}" />
 							</p:selectOneMenu>
 							<p:message for="assignee-id" display="text" showDetail="true" />
 						</h:panelGroup>

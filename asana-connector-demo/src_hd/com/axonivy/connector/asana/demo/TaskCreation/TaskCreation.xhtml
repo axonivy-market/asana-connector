@@ -7,7 +7,6 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
 	<ui:composition template="/layouts/frame-10-full-width.xhtml">
-		<ui:define name="title">#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/Title')}</ui:define>
 		<ui:define name="content">
 			<h3>#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/Title')}</h3>
 			<p>#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/Label')}</p>
@@ -15,7 +14,7 @@
 			<h:form id="form">
 				<p:growl id="growl" showDetail="false" globalOnly="true" />
 				<p:fieldset
-					legend="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskCreation/FieldSetLabel')}">
+					legend="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskInfoLabel')}">
 					<p:panelGrid columns="6" styleClass="ui-panelgrid-blank ui-fluid"
 						columnClasses="ui-g-2 pl-0, ui-g-3 pl-0, ui-g-1 pl-0, ui-g-1 pl-3, ui-g-2 pl-0, ui-g-3 pr-0 mr-0"
 						layout="flex">
@@ -40,8 +39,7 @@
 									itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/DefaultSelectValue')}"
 									itemValue="" />
 								<f:selectItems value="#{data.projects}" var="project"
-									itemValue="#{project.id}" itemLabel="#{project.name}">
-								</f:selectItems>
+									itemValue="#{project.id}" itemLabel="#{project.name}" />
 							</p:selectOneMenu>
 							<p:message for="project-id" display="text" showDetail="true" />
 						</h:panelGroup>
@@ -55,8 +53,7 @@
 									itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/DefaultSelectValue')}"
 									itemValue="" />
 								<f:selectItems value="#{data.workspaces}" var="workspace"
-									itemValue="#{workspace.id}" itemLabel="#{workspace.name}">
-								</f:selectItems>
+									itemValue="#{workspace.id}" itemLabel="#{workspace.name}" />
 								<p:ajax event="change" update="assignee-id"
 									listener="#{logic.getUsersFromWorkspace(data.createRequest.workspaceId)}" />
 								<p:ajax event="change" update="project-id"
@@ -85,8 +82,7 @@
 									itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/DefaultSelectValue')}"
 									itemValue="" />
 								<f:selectItems value="#{data.users}" var="user"
-									itemValue="#{user.id}" itemLabel="#{user.name}">
-								</f:selectItems>
+									itemValue="#{user.id}" itemLabel="#{user.name}" />
 							</p:selectOneMenu>
 							<p:message for="assignee-id" display="text" showDetail="true" />
 						</h:panelGroup>
