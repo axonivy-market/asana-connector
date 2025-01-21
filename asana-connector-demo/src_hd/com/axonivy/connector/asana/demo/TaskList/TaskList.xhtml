@@ -24,8 +24,7 @@
 								itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/DefaultSelectValue')}"
 								itemValue="" />
 							<f:selectItems value="#{data.workspaces}" var="workspace"
-								itemValue="#{workspace.id}" itemLabel="#{workspace.name}">
-							</f:selectItems>
+								itemValue="#{workspace.id}" itemLabel="#{workspace.name}" />
 							<p:ajax event="change" update="project-id"
 								listener="#{logic.getProjects}" />
 						</p:selectOneMenu>
@@ -37,8 +36,7 @@
 								itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/DefaultSelectValue')}"
 								itemValue="" />
 							<f:selectItems value="#{data.projects}" var="project"
-								itemValue="#{project.id}" itemLabel="#{project.name}">
-							</f:selectItems>
+								itemValue="#{project.id}" itemLabel="#{project.name}" />
 							<p:ajax event="change" update="task-table"
 								listener="#{logic.getTaskList}" />
 						</p:selectOneMenu>
