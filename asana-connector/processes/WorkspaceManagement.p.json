@@ -1,0 +1,190 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "1943AF99B134940A",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.asana.WorkspaceManagementData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "getWorkspaces()",
+      "config" : {
+        "signature" : "getWorkspaces",
+        "result" : {
+          "params" : [
+            { "name" : "workspaces", "type" : "java.util.List<com.asana.models.Workspace>", "desc" : "" }
+          ],
+          "map" : {
+            "result.workspaces" : "in.workspaces"
+          }
+        }
+      },
+      "tags" : [
+        "connector"
+      ],
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 488, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "Script",
+      "name" : "Get Workspaces",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.Collections;",
+            "import com.axonivy.connector.asana.service.WorkspaceService;",
+            "",
+            "try{",
+            "  out.workspaces = WorkspaceService.getWorkspaces();",
+            "} catch(Exception ex) {",
+            "  out.workspaces = Collections.emptyList();",
+            "};"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f3", "to" : "f1", "color" : "default" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 488, "y" : 184 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Get Users From Workspace",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.Collections;",
+            "import com.axonivy.connector.asana.service.WorkspaceService;",
+            "",
+            "try{",
+            "  out.users = WorkspaceService.getUsersFromWorkspace(in.workspaceId);",
+            "} catch(Exception ex) {",
+            "  out.users = Collections.emptyList();",
+            "};"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 184 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "CallSubStart",
+      "name" : "getUsersFromWorkspace(String)",
+      "config" : {
+        "signature" : "getUsersFromWorkspace",
+        "input" : {
+          "params" : [
+            { "name" : "workspaceId", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.workspaceId" : "param.workspaceId"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "users", "type" : "java.util.List<com.asana.models.User>", "desc" : "" }
+          ],
+          "map" : {
+            "result.users" : "in.users"
+          }
+        }
+      },
+      "tags" : [
+        "connector"
+      ],
+      "visual" : {
+        "at" : { "x" : 96, "y" : 184 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 488, "y" : 280 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "name" : "Get Projects",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.Collections;",
+            "import com.axonivy.connector.asana.service.WorkspaceService;",
+            "",
+            "try{",
+            "  out.projects = WorkspaceService.getProjectsFromWorkspace(in.workspaceId);",
+            "} catch(Exception ex) {",
+            "  out.projects = Collections.emptyList();",
+            "};"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f10", "color" : "default" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "CallSubStart",
+      "name" : "getProjectsFromWorkspace(String)",
+      "config" : {
+        "signature" : "getProjectsFromWorkspace",
+        "input" : {
+          "params" : [
+            { "name" : "workspaceId", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.workspaceId" : "param.workspaceId"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "projects", "type" : "java.util.List<com.asana.models.Project>", "desc" : "" }
+          ],
+          "map" : {
+            "result.projects" : "in.projects"
+          }
+        }
+      },
+      "tags" : [
+        "connector"
+      ],
+      "visual" : {
+        "at" : { "x" : 96, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f11" }
+      ]
+    } ]
+}

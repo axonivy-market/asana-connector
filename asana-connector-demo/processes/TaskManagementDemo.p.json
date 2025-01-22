@@ -1,0 +1,104 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "1942BB157A78AD22",
+  "config" : {
+    "data" : "com.axonivy.connector.asana.demo.TaskManagementData"
+  },
+  "elements" : [ {
+      "id" : "f5",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 664, "y" : 184 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "DialogCall",
+      "name" : "Create Task",
+      "config" : {
+        "dialog" : "com.axonivy.connector.asana.demo.TaskCreation:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 184 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f5", "color" : "default" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "RequestStart",
+      "name" : "createTask",
+      "config" : {
+        "signature" : "createTask"
+      },
+      "tags" : [
+        "demo"
+      ],
+      "visual" : {
+        "at" : { "x" : 96, "y" : 184 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 664, "y" : 296 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f13",
+      "type" : "DialogCall",
+      "name" : "Get Task List",
+      "config" : {
+        "dialog" : "com.axonivy.connector.asana.demo.TaskList:start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.taskDetails" : "result.task"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 296 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f17", "color" : "default" }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "RequestStart",
+      "name" : "getTaskList",
+      "config" : {
+        "signature" : "getTaskList"
+      },
+      "tags" : [
+        "demo"
+      ],
+      "visual" : {
+        "at" : { "x" : 96, "y" : 296 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f13" }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "DialogCall",
+      "name" : "Task Details",
+      "config" : {
+        "dialog" : "com.axonivy.connector.asana.demo.TaskRetrieval:start(com.axonivy.connector.asana.demo.model.TaskDetails)",
+        "call" : {
+          "map" : {
+            "param.taskDetails" : "in.taskDetails"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 496, "y" : 296 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f12", "color" : "default" }
+      ]
+    } ]
+}

@@ -1,0 +1,259 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "19439BDEF3735A29",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.connector.asana.demo.TaskCreation.TaskCreationData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "map" : { },
+          "code" : [
+            "import com.axonivy.connector.asana.demo.model.CreateTaskRequest;",
+            "out.createRequest = new CreateTaskRequest();"
+          ]
+        },
+        "guid" : "19439BDEF3867757"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 568, "y" : 64 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "19439BDEF3DFFCD4"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 568, "y" : 160 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "SubProcessCall",
+      "name" : "Create Task",
+      "config" : {
+        "processCall" : "TaskManagement:create(java.util.Map)",
+        "call" : {
+          "map" : { },
+          "code" : [
+            "import com.axonivy.connector.asana.demo.util.ConvertUtils;",
+            "param.data = ConvertUtils.toCreateData(in.createRequest);"
+          ]
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.error" : "result.error",
+            "out.taskId" : "result.task.gid"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 248 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f12" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "create(CreateTaskRequest)",
+      "config" : {
+        "signature" : "create",
+        "input" : {
+          "params" : [
+            { "name" : "request", "type" : "com.axonivy.connector.asana.demo.model.CreateTaskRequest", "desc" : "" }
+          ],
+          "map" : {
+            "out.createRequest" : "param.request"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "error", "type" : "String", "desc" : "" }
+          ],
+          "map" : { }
+        },
+        "guid" : "19439C349554FDCF"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 248 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 568, "y" : 248 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f12",
+      "type" : "Script",
+      "name" : "Show Message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "if(in.error != \"\"){",
+            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.error, null));",
+            "} else {",
+            "  String message = \"Success created task with id: \" + in.taskId;",
+            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 424, "y" : 248 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "SubProcessCall",
+      "name" : "Load Workspaces",
+      "config" : {
+        "processCall" : "WorkspaceManagement:getWorkspaces()",
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.asana.demo.model.Resource;",
+            "out.workspaces = Resource.fromWorkspaces(result.workspaces);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f1", "color" : "default" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getUsersFromWorkspace(String)",
+      "config" : {
+        "signature" : "getUsersFromWorkspace",
+        "input" : {
+          "params" : [
+            { "name" : "workspaceId", "type" : "String", "desc" : "" }
+          ],
+          "map" : { }
+        },
+        "guid" : "1943B0DFFCB4319F"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 352 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f16" }
+      ]
+    }, {
+      "id" : "f16",
+      "type" : "SubProcessCall",
+      "name" : "Load Users",
+      "config" : {
+        "processCall" : "WorkspaceManagement:getUsersFromWorkspace(String)",
+        "call" : {
+          "map" : {
+            "param.workspaceId" : "in.createRequest.workspaceId"
+          }
+        },
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.asana.demo.model.Resource;",
+            "out.users = Resource.fromUsers(result.users);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 352 }
+      },
+      "connect" : [
+        { "id" : "f19", "to" : "f17" }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 568, "y" : 352 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f20",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 568, "y" : 448 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f21",
+      "type" : "SubProcessCall",
+      "name" : "Load Projects",
+      "config" : {
+        "processCall" : "WorkspaceManagement:getProjectsFromWorkspace(String)",
+        "call" : {
+          "map" : {
+            "param.workspaceId" : "in.createRequest.workspaceId"
+          }
+        },
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.asana.demo.model.Resource;",
+            "out.projects = Resource.fromProjects(result.projects);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 448 }
+      },
+      "connect" : [
+        { "id" : "f24", "to" : "f20" }
+      ]
+    }, {
+      "id" : "f22",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getProjects()",
+      "config" : {
+        "signature" : "getProjects",
+        "guid" : "1944F3485BF70CDE"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 448 }
+      },
+      "connect" : [
+        { "id" : "f23", "to" : "f21" }
+      ]
+    } ]
+}

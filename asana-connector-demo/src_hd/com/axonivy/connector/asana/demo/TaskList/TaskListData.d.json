@@ -1,0 +1,34 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "TaskListData",
+  "namespace" : "com.axonivy.connector.asana.demo.TaskList",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "tasks",
+    "type" : "java.util.List<com.axonivy.connector.asana.demo.model.TaskDetails>"
+  }, {
+    "name" : "workspaces",
+    "type" : "java.util.List<com.axonivy.connector.asana.demo.model.Resource>"
+  }, {
+    "name" : "users",
+    "type" : "java.util.List<com.axonivy.connector.asana.demo.model.Resource>"
+  }, {
+    "name" : "getTaskRequest",
+    "type" : "com.axonivy.connector.asana.model.GetTasksRequest"
+  }, {
+    "name" : "selectedProject",
+    "type" : "String"
+  }, {
+    "name" : "projects",
+    "type" : "java.util.List<com.axonivy.connector.asana.demo.model.Resource>"
+  }, {
+    "name" : "selectedWorkspace",
+    "type" : "String"
+  }, {
+    "name" : "selectedTask",
+    "type" : "com.axonivy.connector.asana.demo.model.TaskDetails"
+  }, {
+    "name" : "error",
+    "type" : "String"
+  } ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "TaskRetrievalData",
+  "namespace" : "com.axonivy.connector.asana.demo.TaskRetrieval",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "taskDetails",
+    "type" : "com.axonivy.connector.asana.demo.model.TaskDetails"
+  }, {
+    "name" : "users",
+    "type" : "java.util.List<com.axonivy.connector.asana.demo.model.Resource>"
+  }, {
+    "name" : "error",
+    "type" : "String"
+  } ]
+}

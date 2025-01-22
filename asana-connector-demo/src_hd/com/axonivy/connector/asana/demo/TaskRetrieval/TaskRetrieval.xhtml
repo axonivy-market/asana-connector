@@ -1,0 +1,107 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/layouts/frame-10-full-width.xhtml">
+		<ui:define name="content">
+			<h3>#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/TaskDetailsTitle')}</h3>
+			<p:growl />
+			<h:form id="form">
+				<p:growl id="growl" showDetail="false" globalOnly="true" />
+				<p:fieldset
+					legend="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskInfoLabel')}">
+					<p:panelGrid columns="6" styleClass="ui-panelgrid-blank ui-fluid"
+						columnClasses="ui-g-2 pl-0, ui-g-3 pl-0, ui-g-1 pl-0, ui-g-1 pl-0, ui-g-2 pl-5, ui-g-3 pr-0 mr-0"
+						layout="grid">
+						<p:outputLabel for="name"
+							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskNameLabel')}" />
+						<h:panelGroup styleClass="md-inputfield">
+							<p:inputText id="name" required="true"
+								value="#{data.taskDetails.name}" />
+							<p:message for="name" display="text" showDetail="true" />
+						</h:panelGroup>
+
+						<p:outputLabel value="" />
+						<p:outputLabel value="" />
+
+						<p:outputLabel for="assignee-id"
+							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/AssigneeLabel')}" />
+						<h:panelGroup styleClass="md-inputfield">
+							<p:selectOneMenu id="assignee-id" required="true"
+								value="#{data.taskDetails.assigneeId}">
+								<f:selectItem
+									itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/DefaultSelectValue')}"
+									itemValue="" />
+								<f:selectItems value="#{data.users}" var="user"
+									itemValue="#{user.id}" itemLabel="#{user.name}" />
+							</p:selectOneMenu>
+							<p:message for="assignee-id" display="text" showDetail="true" />
+						</h:panelGroup>
+
+						<p:outputLabel for="modified-at"
+							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/ModifiedAtLabel')}" />
+						<p:inputText id="modified-at" disabled="true"
+							value="#{data.taskDetails.modifiedAt}" />
+
+						<p:outputLabel value="" />
+						<p:outputLabel value="" />
+
+						<p:outputLabel for="created-at"
+							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/CreatedDateLabel')}" />
+						<p:inputText id="created-at" disabled="true"
+							value="#{data.taskDetails.createdAt}" />
+
+						<p:outputLabel for="workspace"
+							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/WorkspaceLabel')}" />
+						<p:inputText id="workspace" disabled="true"
+							value="#{data.taskDetails.workspace}" />
+
+						<p:outputLabel value="" />
+						<p:outputLabel value="" />
+
+						<p:outputLabel for="start-on"
+							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/StartDateLabel')}" />
+						<h:panelGroup styleClass="md-inputfield">
+							<p:datePicker id="start-on" required="true"
+								value="#{data.taskDetails.startOn}" showIcon="true" />
+							<p:message for="start-on" display="text" showDetail="true" />
+						</h:panelGroup>
+
+						<p:outputLabel for="completed"
+							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/CompletedLabel')}" />
+						<p:selectBooleanCheckbox id="completed"
+							value="#{data.taskDetails.completed}" />
+
+						<p:outputLabel value="" />
+						<p:outputLabel value="" />
+
+						<p:outputLabel for="due-date"
+							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/DueDateLabel')}" />
+						<h:panelGroup styleClass="md-inputfield">
+							<p:datePicker id="due-date" required="true"
+								value="#{data.taskDetails.dueDate}" showIcon="true" />
+							<p:message for="due-date" display="text" showDetail="true" />
+						</h:panelGroup>
+					</p:panelGrid>
+				</p:fieldset>
+				<br />
+				<div class="command-btns">
+					<p:commandLink id="close" actionListener="#{logic.close}"
+						value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/CloseBtnLabel')}"
+						immediate="true" />
+					<p:commandLink id="update"
+						actionListener="#{logic.update(data.taskDetails)}"
+						value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/asana/demo/TaskDetails/UpdateBtnLabel')}"
+						update="form"
+						styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only text-white w-5rem" />
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

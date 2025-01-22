@@ -1,0 +1,30 @@
+Dialogs:
+  com:
+    axonivy:
+      connector:
+        asana:
+          demo:
+            AssigneeLabel: Assignee
+            CloseBtnLabel: Close
+            CompletedLabel: Completed
+            DefaultSelectValue: Select One
+            DueDateLabel: Due Date
+            ProjectLabel: Project
+            StartDateLabel: Start Date
+            TaskCreation:
+              CreateBtnLabel: Create
+              Label: Create a new task.
+              Title: Task Creation
+            TaskDetails:
+              CreatedDateLabel: Created At
+              DeleteBtnLabel: Delete
+              ModifiedAtLabel: Modified At
+              TaskDetailsTitle: Update Task
+              UpdateBtnLabel: Update
+            TaskInfoLabel: Task Info
+            TaskList:
+              TableActions: Actions
+              TableId: ID
+              Title: Task List View
+            TaskNameLabel: Task Name
+            WorkspaceLabel: Workspace

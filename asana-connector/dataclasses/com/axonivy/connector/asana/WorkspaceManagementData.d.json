@@ -1,0 +1,19 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "WorkspaceManagementData",
+  "namespace" : "com.axonivy.connector.asana",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "workspaces",
+    "type" : "java.util.List<com.asana.models.Workspace>"
+  }, {
+    "name" : "workspaceId",
+    "type" : "String"
+  }, {
+    "name" : "users",
+    "type" : "java.util.List<com.asana.models.User>"
+  }, {
+    "name" : "projects",
+    "type" : "java.util.List<com.asana.models.Project>"
+  } ]
+}

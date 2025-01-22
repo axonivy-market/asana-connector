@@ -1,0 +1,302 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "1944E53232EB951A",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.connector.asana.demo.TaskList.TaskListData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "signature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "task", "type" : "com.axonivy.connector.asana.demo.model.TaskDetails", "desc" : "" }
+          ],
+          "map" : {
+            "result.task" : "in.selectedTask"
+          }
+        },
+        "guid" : "1944E532333ED204"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 368, "y" : 64 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "1944E532338A32FC"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "SubProcessCall",
+      "name" : "Load Workspaces",
+      "config" : {
+        "processCall" : "WorkspaceManagement:getWorkspaces()",
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.asana.demo.model.Resource;",
+            "out.workspaces = Resource.fromWorkspaces(result.workspaces);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "SubProcessCall",
+      "name" : "Get Task List",
+      "config" : {
+        "processCall" : "TaskManagement:getTaskList(com.axonivy.connector.asana.model.GetTasksRequest)",
+        "call" : {
+          "map" : { },
+          "code" : [
+            "import java.util.Arrays;",
+            "import com.axonivy.connector.asana.model.GetTasksRequest;",
+            "GetTasksRequest request = new GetTasksRequest();",
+            "request.setProjectGid(in.selectedProject);",
+            "request.setOptFields(Arrays.asList(\"name\", \"assignee.name\", \"created_at\", \"start_on\", \"due_on\", \"completed\", \"workspace.name\", \"modified_at\"));",
+            "param.request = request;"
+          ]
+        },
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.asana.demo.util.ConvertUtils;",
+            "out.tasks = ConvertUtils.convertToTasks(result.tasks);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getTaskList()",
+      "config" : {
+        "signature" : "getTaskList",
+        "guid" : "1944E68B62449C48"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 368, "y" : 280 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f13",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 368, "y" : 480 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f14",
+      "type" : "SubProcessCall",
+      "name" : "Load Projects",
+      "config" : {
+        "processCall" : "WorkspaceManagement:getProjectsFromWorkspace(String)",
+        "call" : {
+          "map" : {
+            "param.workspaceId" : "in.selectedWorkspace"
+          }
+        },
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.asana.demo.model.Resource;",
+            "out.projects = Resource.fromProjects(result.projects);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 480 }
+      },
+      "connect" : [
+        { "id" : "f22", "to" : "f13" }
+      ]
+    }, {
+      "id" : "f20",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getProjects()",
+      "config" : {
+        "signature" : "getProjects",
+        "guid" : "1944EF9908DD6C43"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 480 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f14" }
+      ]
+    }, {
+      "id" : "f23",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 568, "y" : 584 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f24",
+      "type" : "Script",
+      "name" : "Show Message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.asana.demo.model.TaskDetails;",
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "if(in.error != \"\"){",
+            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.error, null));",
+            "} else {",
+            "  String message = \"Deleted task, id: \" + in.selectedTask.taskId;",
+            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));",
+            "  out.tasks = TaskDetails.removeTask(in.tasks, in.selectedTask.taskId);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 416, "y" : 584 }
+      },
+      "connect" : [
+        { "id" : "f28", "to" : "f23" }
+      ]
+    }, {
+      "id" : "f25",
+      "type" : "SubProcessCall",
+      "name" : "Delete Task",
+      "config" : {
+        "processCall" : "TaskManagement:delete(String)",
+        "call" : {
+          "map" : {
+            "param.taskId" : "in.selectedTask.taskId"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.error" : "result.error"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 584 }
+      },
+      "connect" : [
+        { "id" : "f29", "to" : "f24" }
+      ]
+    }, {
+      "id" : "f26",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "delete(TaskDetails)",
+      "config" : {
+        "signature" : "delete",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "com.axonivy.connector.asana.demo.model.TaskDetails", "desc" : "" }
+          ],
+          "map" : {
+            "out.selectedTask" : "param.task"
+          }
+        },
+        "guid" : "1945EFC8D87F6069"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 584 }
+      },
+      "connect" : [
+        { "id" : "f27", "to" : "f25" }
+      ]
+    }, {
+      "id" : "f33",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "edit(TaskDetails)",
+      "config" : {
+        "signature" : "edit",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "com.axonivy.connector.asana.demo.model.TaskDetails", "desc" : "" }
+          ],
+          "map" : {
+            "out.selectedTask" : "param.task"
+          },
+          "code" : "out.selectedTask = param.task;"
+        },
+        "guid" : "1945F091FBAC76CC"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 376 }
+      },
+      "connect" : [
+        { "id" : "f30", "to" : "f31" }
+      ]
+    }, {
+      "id" : "f34",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 368, "y" : 376 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f31",
+      "type" : "Script",
+      "name" : "Edit Task",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.selectedTask" : "in.selectedTask"
+          },
+          "code" : "out.selectedTask = in.selectedTask;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 376 }
+      },
+      "connect" : [
+        { "id" : "f32", "to" : "f34", "color" : "default" }
+      ]
+    } ]
+}
