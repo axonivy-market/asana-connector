@@ -8,9 +8,9 @@
 #
 
 # Example Variables:
-#  asana:
+#  asanaConnector:
 #    accessToken: 'AIzaSyDax'
 Variables:
-  asana-connector:
+  asanaConnector:
     # The PAT key that can be created in https://app.asana.com/0/my-apps.
     accessToken: ''
