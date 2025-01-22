@@ -38,7 +38,6 @@ Add the following code block to your `config/variables.yaml` file of your main B
 ```
 @variables.yaml@
 ```
-<<<<<<< Updated upstream
 =======
 
 ### Asana Registration
