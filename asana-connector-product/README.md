@@ -46,4 +46,3 @@ Add the following code block to your `config/variables.yaml` file of your main B
 (Personal access token), which you will later add to the `variables.yaml`.
     ![create-pat](img/create-pat.png).
 1. Refer to the [Quick start guide](https://developers.asana.com/docs/quick-start) to learn how to access your Workspace GID.
->>>>>>> Stashed changes
