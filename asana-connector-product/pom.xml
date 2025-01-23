@@ -6,9 +6,11 @@
 	<artifactId>asana-connector-product</artifactId>
 	<version>12.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
+  
 	<properties>
 		<variables.yaml.file>../asana-connector/config/variables.yaml</variables.yaml.file>
 	</properties>
+  
 	<build>
 		<plugins>
 			<plugin>
@@ -45,6 +47,9 @@
 								<copy todir="${project.build.directory}">
 									<fileset dir="." includes="README*.md" />
 								</copy>
+                <loadfile property="variables.yaml" srcFile="${variables.yaml.file}" failonerror="false" encoding="UTF-8" />
+                <replace file="${project.build.directory}/README.md" value="${variables.yaml}" token="@variables.yaml@" />
+                <replace file="${project.build.directory}/README_DE.md" value="${variables.yaml}" token="@variables.yaml@" />
 							</target>
 						</configuration>
 						<goals>
