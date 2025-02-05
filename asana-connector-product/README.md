@@ -1,12 +1,13 @@
 # Asana Connector
 
 [Asana](https://asana.com/) is a web and mobile application designed for team collaboration and project management.
-It allows users to organize tasks, track progress, assign work, set deadlines, and communicate within teams, making project and workflow management efficient.
-This connector provides the following capabilities:
-- Create a task.
-- Get task details.
-- Update task details.
-- Delete task.
+It helps teams organize tasks, track progress, assign work, set deadlines, and communicate efficiently.  
+  
+The Axon Ivy Asana connector provides the following capabilities:
+- Create a task
+- Retrieve task details
+- Update task details
+- Delete a task
 
 ## Demo
 
@@ -15,6 +16,7 @@ Check out the demo implementations we have prepared for the Asana connector:
 ![demo-process](img/demo-process.png).
 
 This demo provides the following features:
+
 1. Create Task
 - Creates a new task with sample data (e.g., task name, workspace, project, assignee, start date and due date).
 - `Project` and `Assignee` will be fetched base on the selected `Workspace`.
