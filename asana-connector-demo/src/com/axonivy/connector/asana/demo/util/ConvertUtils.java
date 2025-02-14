@@ -12,7 +12,7 @@ import com.axonivy.connector.asana.demo.model.TaskDetails;
 
 public class ConvertUtils {
 
-	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-DD");
+	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 	public static Map<String, Object> toCreateData(CreateTaskRequest request) {
 		Map<String, Object> data = new HashMap<>();
