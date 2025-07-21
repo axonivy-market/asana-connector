@@ -1,6 +1,6 @@
 version: 2
 updates:
   - package-ecosystem: "maven"
-    directory: "../../asana-connector"
+    directory: "/"
     schedule:
       interval: "weekly"
