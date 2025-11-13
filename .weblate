@@ -1,0 +1,5 @@
+[md]
+preserve_linebreaks = false
+# Optional: Set your source language and file mask
+# source_language = en
+# file_mask = locale/*.md
