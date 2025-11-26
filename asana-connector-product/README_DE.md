@@ -37,7 +37,7 @@ Diese Demo versieht die folgenden Charakterzüge:
 - Erlaubt bearbeiten Task Details wie den Task Namen, assignee, Start Datum, und
   fälliges Datum. ![Task-verbesser](img/task-update.png).
 
-## Einrichtung
+## Setup
 
 #Um zu benutzen dieses Produkt du musst die Variablen konfigurieren.
 
