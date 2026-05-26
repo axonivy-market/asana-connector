@@ -1,25 +1,28 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "TaskManagementData",
   "namespace" : "com.axonivy.connector.asana",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "error",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "taskId",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "data",
-    "type" : "java.util.Map<String, Object>"
+    "type" : "java.util.Map<String, Object>",
+    "modifiers" : [ ]
   }, {
     "name" : "task",
-    "type" : "com.asana.models.Task"
+    "type" : "com.asana.models.Task",
+    "modifiers" : [ ]
   }, {
     "name" : "tasks",
-    "type" : "java.util.List<com.asana.models.Task>"
+    "type" : "java.util.List<com.asana.models.Task>",
+    "modifiers" : [ ]
   }, {
     "name" : "getTaskRequest",
-    "type" : "com.axonivy.connector.asana.model.GetTasksRequest"
+    "type" : "com.axonivy.connector.asana.model.GetTasksRequest",
+    "modifiers" : [ ]
   } ]
 }
