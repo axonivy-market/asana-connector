@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-2.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/process.json",
   "id" : "1944E53232EB951A",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -184,8 +184,8 @@
         "output" : {
           "code" : [
             "import com.axonivy.connector.asana.demo.model.TaskDetails;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "if(in.error != \"\"){",
             "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.error, null));",
